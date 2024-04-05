@@ -1,6 +1,6 @@
-import { BaseSyntheticEvent, memo, useState } from 'react';
+import { BaseSyntheticEvent, memo } from 'react';
 import { UseFormReturn } from 'react-hook-form';
-import { Link, useNavigate } from 'react-router-dom';
+// import { useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
 
 import { AppButton, AppInput, AppText } from '@components';
@@ -17,7 +17,7 @@ interface IProps {
 
 export const ResetPasswordForm = memo((props: IProps) => {
   const { form, onSubmitForm } = props;
-  const navigate = useNavigate();
+  // const navigate = useNavigate();
 
   const {
     register,
@@ -25,7 +25,7 @@ export const ResetPasswordForm = memo((props: IProps) => {
   } = form;
 
   return (
-    <StyledSignUpWrapper>
+    <Wrapper>
       <ResetPasswordIcon className="absolute -top-[160px]" />
       <AppText
         $fontSize={40}
@@ -93,11 +93,11 @@ export const ResetPasswordForm = memo((props: IProps) => {
           </div>
         </div>
       </form>
-    </StyledSignUpWrapper>
+    </Wrapper>
   );
 });
 
-export const StyledSignUpWrapper = styled.section`
+export const Wrapper = styled.section`
   position: relative;
   display: flex;
   flex-direction: column;

@@ -1,16 +1,14 @@
 import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
-import { useTranslation } from 'react-i18next';
 
-import { useAppDispatch } from '@/redux/hooks';
+// import { useAppDispatch } from '@/redux/hooks';
 import { useNavigate } from 'react-router-dom';
 import { RegisterSchema } from '@validations';
-import { showAppToast } from '@utils';
+// import { showAppToast } from '@utils';
 import { RegisterForm } from '@pages/auth/register';
 
 export const RegisterModule = () => {
-  const dispatch = useAppDispatch();
-  const { t } = useTranslation();
+  //   const dispatch = useAppDispatch();
   const navigate = useNavigate();
 
   const form = useForm({
@@ -18,13 +16,15 @@ export const RegisterModule = () => {
     resolver: yupResolver(RegisterSchema),
   });
 
-  const { handleSubmit, reset } = form;
+  const { handleSubmit } = form;
 
   const handleRedirectToRegister = () => {
     navigate('/register/email');
   };
 
-  const handleSubmitForm = handleSubmit(async value => {});
+  const handleSubmitForm = handleSubmit(async value => {
+    return value;
+  });
 
   return (
     <>

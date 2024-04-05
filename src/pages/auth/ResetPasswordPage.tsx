@@ -1,8 +1,5 @@
-import { IMAGES } from '@assets';
-import { APP_COLORS } from '@themes';
 import styled from 'styled-components';
 import { ResetPasswordModule } from '@modules';
-import { BREAK_POINT } from '@config';
 
 export const ResetPasswordPage = () => {
   return (

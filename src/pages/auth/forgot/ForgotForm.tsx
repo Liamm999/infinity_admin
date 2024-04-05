@@ -1,6 +1,6 @@
-import { BaseSyntheticEvent, memo, useState } from 'react';
+import { BaseSyntheticEvent, memo } from 'react';
 import { UseFormReturn } from 'react-hook-form';
-import { Link, useNavigate } from 'react-router-dom';
+// import {  useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
 
 import { AppButton, AppInput, AppText } from '@components';
@@ -16,7 +16,7 @@ interface IProps {
 
 export const ForgotForm = memo((props: IProps) => {
   const { form, onSubmitForm } = props;
-  const navigate = useNavigate();
+  // const navigate = useNavigate();
 
   const {
     register,

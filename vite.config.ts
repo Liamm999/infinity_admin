@@ -8,7 +8,7 @@ import svgr from 'vite-plugin-svgr';
 import { viteCommonjs } from '@originjs/vite-plugin-commonjs';
 import { defineConfig } from 'vite';
 import path from 'path';
-import postcss from './postcss.config';
+const postcssConfig = require('./postcss.config');
 
 // https://vitejs.dev/config/
 export default defineConfig({
@@ -24,7 +24,7 @@ export default defineConfig({
   },
   css: {
     devSourcemap: true,
-    postcss,
+    postcss: postcssConfig,
   },
   resolve: {
     alias: [

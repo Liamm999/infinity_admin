@@ -1,5 +1,3 @@
-import { IMAGES } from '@assets';
-import { APP_COLORS } from '@themes';
 import styled from 'styled-components';
 import { ForgotModule } from '@modules';
 

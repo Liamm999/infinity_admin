@@ -1,18 +1,13 @@
-import { BaseSyntheticEvent, memo, useState } from 'react';
+import { BaseSyntheticEvent, memo } from 'react';
 import { UseFormReturn } from 'react-hook-form';
-import { useTranslation } from 'react-i18next';
-import { Link, useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
 
 import {
   AppButton,
-  AppH3,
   AppInput,
   AppText,
-  AppTextBodyRegular,
 } from '@components';
-import { BREAK_POINT } from '@config';
-import { PATH_FORGOT_PASSWORD } from '@routes';
 import { APP_COLORS } from '@themes';
 import { IMAGES, Logo } from '@assets';
 

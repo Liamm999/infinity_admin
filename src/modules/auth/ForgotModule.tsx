@@ -2,20 +2,16 @@
 
 import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
-import { useTranslation } from 'react-i18next';
 
-import { useAppDispatch } from '@/redux/hooks';
+// import { useAppDispatch } from '@/redux/hooks';
 import { useNavigate } from 'react-router-dom';
 import { ForgotPasswordSchema } from '@validations';
-import { setLoading, setVerifyMailHash } from '@redux';
-import { LogApp, showAppToast } from '@utils';
-import { authAPI } from '@api';
+// import { LogApp, showAppToast } from '@utils';
 import { ForgotForm } from '@pages';
-import { PATH_OTP } from '@routes';
 
 export const ForgotModule = () => {
-  const dispatch = useAppDispatch();
-  const { t } = useTranslation();
+  // const dispatch = useAppDispatch();
+  // const { t } = useTranslation();
   const navigate = useNavigate();
 
   const form = useForm({
@@ -23,13 +19,15 @@ export const ForgotModule = () => {
     resolver: yupResolver(ForgotPasswordSchema),
   });
 
-  const { handleSubmit, reset } = form;
+  const { handleSubmit } = form;
 
   const handleRedirectToRegister = () => {
     navigate('/register/email');
   };
 
-  const handleSubmitForm = handleSubmit(async value => {});
+  const handleSubmitForm = handleSubmit(async value => {
+    return value;
+  });
 
   return (
     <ForgotForm
