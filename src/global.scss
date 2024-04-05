@@ -1,0 +1,606 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+:root {
+  --dark: 0, 0, 0;
+  --background-default: 255, 255, 255;
+}
+
+html {
+  box-sizing: border-box;
+  font-size: 62.5%;
+  // font-size: 100%;
+  -ms-overflow-style: -ms-autohiding-scrollbar;
+  font-family: 'Hammersmith One', sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/// Simple
+*::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+*::-webkit-scrollbar-track {
+  border-radius: 10px;
+  background: transparent;
+}
+*::-webkit-scrollbar-thumb {
+  border-radius: 10px;
+  background: rgba(0, 0, 0, 0.2);
+}
+*::-webkit-scrollbar-thumb:hover {
+  background: rgba(0, 0, 0, 0.4);
+}
+*::-webkit-scrollbar-thumb:active {
+  background: rgba(0, 0, 0, 0.9);
+}
+
+/* Arial Black */
+@font-face {
+  font-family: 'Arial Black';
+  src: url('./assets/fonts/ArialBlack/ariblk.ttf') format('truetype');
+  font-weight: normal;
+}
+
+/* Bebas Kai */
+@font-face {
+  font-family: 'Bebas Kai';
+  src: url('./assets/fonts/BebasKai/BebasKai.ttf') format('truetype');
+  font-weight: normal;
+}
+
+@font-face {
+  font-family: 'Bebas Kai';
+  src: url('./assets/fonts/BebasKai/BebasKai.otf') format('truetype');
+  font-weight: normal;
+}
+
+/* Helvetica Narrow */
+@font-face {
+  font-family: 'Helvetica Narrow';
+  src: url('./assets/fonts/HevelticalNarrow/HelveticaNw.ttf') format('truetype');
+  font-weight: 400;
+}
+
+@font-face {
+  font-family: 'Helvetica Narrow';
+  src: url('./assets/fonts/HevelticalNarrow/HelveticaNarrowBold.ttf')
+    format('truetype');
+  font-weight: 600;
+}
+
+/* Myriad Pro */
+@font-face {
+  font-family: 'Myriad Pro';
+  src: url('./assets/fonts/MyriadPro/MyriadPro-Light.woff') format('truetype');
+  font-weight: 400;
+}
+
+@font-face {
+  font-family: 'Myriad Pro';
+  src: url('./assets/fonts/MyriadPro/MYRIADPRO-REGULAR.woff') format('truetype');
+  font-weight: 500;
+}
+
+@font-face {
+  font-family: 'Myriad Pro';
+  src: url('./assets/fonts/MyriadPro/MYRIADPRO-COND.woff') format('truetype');
+  font-weight: 500;
+  font-stretch: condensed;
+}
+
+@font-face {
+  font-family: 'Myriad Pro';
+  src: url('./assets/fonts/MyriadPro/MYRIADPRO-CONDIT.woff') format('truetype');
+  font-weight: 500;
+  font-stretch: condensed;
+  font-style: italic;
+}
+
+@font-face {
+  font-family: 'Myriad Pro';
+  src: url('./assets/fonts/MyriadPro/MYRIADPRO-SEMIBOLD.woff')
+    format('truetype');
+  font-weight: 600;
+}
+
+@font-face {
+  font-family: 'Myriad Pro';
+  src: url('./assets/fonts/MyriadPro/MYRIADPRO-SEMIBOLDIT.woff')
+    format('truetype');
+  font-weight: 600;
+  font-style: italic;
+}
+
+@font-face {
+  font-family: 'Myriad Pro';
+  src: url('./assets/fonts/MyriadPro/MYRIADPRO-BOLD.woff') format('truetype');
+  font-weight: 700;
+}
+
+@font-face {
+  font-family: 'Myriad Pro';
+  src: url('./assets/fonts/MyriadPro/MYRIADPRO-BOLDIT.woff') format('truetype');
+  font-weight: 700;
+  font-style: italic;
+}
+
+@font-face {
+  font-family: 'Myriad Pro';
+  src: url('./assets/fonts/MyriadPro/MYRIADPRO-BOLDCOND.woff')
+    format('truetype');
+  font-weight: 700;
+  font-stretch: condensed;
+}
+
+@font-face {
+  font-family: 'Myriad Pro';
+  src: url('./assets/fonts/MyriadPro/MYRIADPRO-BOLDCONDIT.woff')
+    format('truetype');
+  font-weight: 700;
+  font-stretch: condensed;
+  font-style: italic;
+}
+
+.desktop-h1 {
+  font-family: 'Recoleta';
+  font-weight: 600;
+  font-size: 6rem;
+  line-height: 7rem;
+  font-style: normal;
+  color: #4d4a42;
+}
+
+@media (max-width: 480px) {
+  .desktop-h1 {
+    font-size: 3rem;
+    line-height: 4rem;
+  }
+}
+
+.desktop-h2 {
+  font-family: 'Recoleta';
+  font-weight: 600;
+  font-size: 4rem;
+  line-height: 5.4rem;
+  font-style: normal;
+  color: #4d4a42;
+}
+
+.desktop-h3 {
+  font-family: 'Hammersmith One';
+  font-weight: 700;
+  font-size: 2.8rem;
+  line-height: 2.7rem;
+  font-style: normal;
+}
+
+.app-h4,
+.desktop-h4 {
+  font-family: 'Hammersmith One';
+  font-weight: 500;
+  font-size: 2.4rem;
+  line-height: 2.3rem;
+  font-style: normal;
+}
+
+.mobile-h4 {
+  font-family: 'Hammersmith One';
+  font-weight: 500;
+  font-size: 1.8rem;
+  line-height: 1.8rem;
+  font-style: normal;
+  color: #4d4a42;
+}
+
+.text-default {
+  font-family: 'Hammersmith One';
+  font-weight: 400;
+  font-size: 1.6rem;
+  line-height: 1.8rem;
+  font-style: normal;
+  color: #4d4a42;
+}
+
+.text-bold-link {
+  font-family: 'Hammersmith One';
+  font-weight: 700;
+  font-size: 1.6rem;
+  line-height: 1.5rem;
+  font-style: normal;
+}
+
+.text-app-link {
+  font-family: 'Hammersmith One';
+  font-weight: 400;
+  font-size: 1.4rem;
+  line-height: 1.4rem;
+  font-style: normal;
+  text-decoration: underline;
+  cursor: pointer;
+  color: #00897b;
+}
+
+.text-app-link:hover {
+  /* opacity: 0.72; */
+  color: #2665d1;
+}
+
+.text-ellipse {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.desktop-textBoldLink {
+  font-family: 'Hammersmith One';
+  font-weight: 700;
+  font-size: 1.6rem;
+  /* line-height: 1.5rem; */
+  font-style: normal;
+}
+
+.mobile-textDefault {
+  font-family: 'Hammersmith One';
+  font-weight: 400;
+  font-size: 1.6rem;
+  line-height: 1.8rem;
+  font-style: normal;
+}
+
+.mobile-metadata {
+  font-family: 'Hammersmith One';
+  font-weight: 500;
+  font-size: 1.2rem;
+  line-height: 1.1rem;
+  font-style: normal;
+  text-transform: uppercase;
+}
+
+.text-buttons {
+  font-family: 'Hammersmith One', sans-serif;
+  font-size: 1.6rem;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 1.6rem;
+  cursor: pointer;
+}
+
+.text-buttons:hover {
+  opacity: 0.6;
+}
+
+.uppercase {
+  text-transform: uppercase;
+}
+
+.capitalize {
+  text-transform: capitalize;
+}
+
+.capitalize-ft::first-letter {
+  text-transform: capitalize;
+}
+
+.lowercase {
+  text-transform: lowercase;
+}
+
+.mobile-captions {
+  font-family: 'Hammersmith One';
+  font-weight: 400;
+  font-size: 1.4rem;
+  line-height: 1.3rem;
+  font-style: normal;
+}
+
+.button-text {
+  font-family: 'Hammersmith One', sans-serif;
+  font-weight: 500;
+  font-size: 1.6rem;
+  text-align: center;
+  font-style: normal;
+  cursor: pointer;
+}
+
+.button-text:hover {
+  opacity: 0.8;
+}
+
+.app-metadata {
+  font-size: 14px;
+  font-family: 'Hammersmith One';
+  font-style: normal;
+  font-weight: 500;
+  line-height: normal;
+  text-transform: uppercase;
+}
+
+.app-caption,
+.app-captions {
+  font-size: 1.4rem;
+  font-family: 'Hammersmith One';
+  line-height: 1.8rem;
+  font-weight: 400;
+}
+
+.font-dark {
+  color: #4d4a42 !important;
+}
+
+.font-light {
+  color: #b5ad99 !important;
+}
+
+.font-red {
+  color: #d56544 !important;
+}
+.font-blue {
+  color: #2891ff !important;
+}
+
+.font-cream {
+  color: #f7f0de !important;
+}
+
+.loading-background {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 99;
+  background: #d56544;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  animation: skeleton-loading 1s linear infinite alternate;
+}
+
+.loading-page-background {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 99;
+  /* background: #00000082; */
+  background: #d56544;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  animation: skeleton-loading 1s linear infinite alternate;
+}
+
+.loading-inner-background {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 99;
+  background: #d56544;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  animation: skeleton-loading 1s linear infinite alternate;
+}
+
+.background-image {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  z-index: -1;
+  background: linear-gradient(#951f00, #c96546);
+  animation: skeleton-loading 1s linear infinite alternate;
+}
+
+.app-loading-icon {
+  width: 42px !important;
+  color: #f7f0de !important;
+}
+
+.mb_px5 {
+  margin-bottom: 5px;
+}
+
+.mb_px10 {
+  margin-bottom: 10px;
+}
+
+.mb_px20 {
+  margin-bottom: 20px;
+}
+
+.mb_px40 {
+  margin-bottom: 40px;
+}
+
+.app-mr10 {
+  margin-right: 10px;
+}
+
+@keyframes skeleton-image {
+  0% {
+    background-color: hsl(0, 81%, 35%);
+  }
+  100% {
+    background-color: hsl(0, 81%, 39%);
+  }
+}
+
+@keyframes skeleton-loading {
+  0% {
+    background-position: 100% 0;
+  }
+  100% {
+    background-position: -100% 0;
+  }
+}
+
+.mobile-button {
+  height: 40px !important;
+  padding: 10px 20px !important;
+  font-family: 'Hammersmith One';
+  font-style: normal;
+  font-weight: 500;
+  font-size: 16px;
+}
+.app-page {
+  overflow-x: hidden;
+}
+
+.mobile-button-text {
+  font-family: 'Hammersmith One';
+  font-style: normal;
+  font-weight: 500;
+  font-size: 16px;
+}
+
+.w-full {
+  width: 100%;
+}
+
+.w-full-i {
+  width: 100% !important;
+}
+
+.box-full {
+  width: 100%;
+  height: 100%;
+}
+
+.box-relative-full {
+  position: relative;
+  width: 100%;
+  height: 100%;
+}
+
+.app-help-icon {
+  cursor: pointer;
+}
+.app-help-icon:hover {
+  opacity: 0.68;
+}
+.app-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+  z-index: 1;
+  background: #000;
+  opacity: 0.3;
+}
+.app-image-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+  z-index: 1;
+  background: linear-gradient(
+    180deg,
+    rgba(77, 74, 66, 0) 0%,
+    rgba(77, 74, 66, 0.8) 100%
+  );
+}
+
+.react-tooltip {
+  z-index: 999;
+  max-width: 350px;
+  text-align: center;
+}
+
+.text-center {
+  text-align: center;
+}
+
+.app-input-text-error {
+  margin-top: 0.5rem;
+  margin-bottom: 0;
+  color: red;
+  font-size: 1.2rem;
+  position: relative;
+  font-family: 'Hammersmith One';
+}
+
+.text-italic {
+  font-style: italic;
+}
+
+.text-link {
+  cursor: pointer;
+  color: #2665d1;
+}
+.text-link:hover {
+  opacity: 0.8;
+}
+
+@layer components {
+  /*Custom class (override base class) when writing a component */
+  /* example */
+  // .text-primary {
+  //   @apply text-black;
+  // }
+}
+
+@layer utilities {
+  /*Custom class override base and components class*/
+}
+
+@media (min-width: 481px) {
+  .only-mb-view {
+    display: none !important;
+  }
+}
+
+@media (max-width: 480px) {
+  .only-pc-view {
+    display: none !important;
+  }
+}
+
+@media (min-width: 480px) and (max-width: 768px) {
+}
+@media only screen and (min-width: 240px) and (max-width: 480px) {
+  .app-metadata {
+    font-size: 12px;
+  }
+  .app-h4 {
+    font-family: 'Hammersmith One';
+    font-weight: 500;
+    font-size: 1.8rem;
+    line-height: 1.8rem;
+    font-style: normal;
+    color: #4d4a42;
+  }
+
+  .mobile-bottom-box {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    z-index: 8;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    margin-top: 0;
+    padding: 20px 0;
+    background: #fff;
+    box-shadow: 0px -2px 4px 0px rgba(0, 0, 0, 0.15);
+  }
+}
+
+.pswp__img {
+  object-fit: contain;
+  background-color: transparent;
+  padding: 10vh 10vw;
+}
