@@ -8,7 +8,7 @@ import svgr from 'vite-plugin-svgr';
 import { viteCommonjs } from '@originjs/vite-plugin-commonjs';
 import { defineConfig } from 'vite';
 import path from 'path';
-const postcssConfig = require('./postcss.config');
+import { postcssConfig } from './postcss.config';
 
 // https://vitejs.dev/config/
 export default defineConfig({
