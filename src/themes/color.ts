@@ -189,6 +189,11 @@ export const APP_COLORS = {
   primaryGray: '#EAEAEA',
   primaryGolden: '#EDC16CDE',
   secondaryGolden: '#EDC16CDE',
+  darkerGolden: '#F3AA1DDE',
   primaryRed: '#FF0000',
   primaryBlue: '#00B2FF',
+  greenDarker: '#082A2C',
+  midGray: '#bbb7b7',
+  lightGray: '#DBD7D7',
+  pink: '#DFC8C8',
 };

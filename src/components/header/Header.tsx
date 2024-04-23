@@ -2,17 +2,18 @@ import { Dropdown, Menu } from 'antd';
 import { CaretDownOutlined } from '@ant-design/icons';
 import styled from 'styled-components';
 import {
+  AppInput,
   AppText,
   AppTextBodyMedium,
   ModalConfirm,
   UKFlagIcon,
-  VNFlagIcon
+  VNFlagIcon,
 } from '@components';
 import { APP_COLORS } from '@themes';
 import { authAPI } from '@api';
-import { useNavigate } from 'react-router-dom';
-import { PATH_LOGIN } from '@routes';
-import { AUTH_USER } from '@config';
+import { useLocation, useNavigate } from 'react-router-dom';
+import { PATH_CALLS, PATH_CUSTOMERS, PATH_LOGIN } from '@routes';
+import { APP_HEADER_HEIGHT, AUTH_USER } from '@config';
 import { removeFormLS } from '@utils';
 import {
   logout,
@@ -20,186 +21,73 @@ import {
   selectAuth,
   setAppLanguage,
   useAppDispatch,
-  useAppSelector
+  useAppSelector,
 } from '@redux';
-import { useState } from 'react';
+import { ChangeEvent, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { IMAGES } from '@assets';
-
-const LanguageDropdown = () => {
-  const dispatch: any = useAppDispatch();
-  const lang = useAppSelector(selectApp);
-  const menu = (
-    <StyledWrapLanguageDropDown>
-      <Menu>
-        <Menu.Item
-          key="1"
-          onClick={() => dispatch(setAppLanguage('en'))}
-          className={lang.language === 'en' ? 'active' : ''}
-        >
-          English
-        </Menu.Item>
-        <Menu.Item
-          key="2"
-          onClick={() => dispatch(setAppLanguage('cn'))}
-          className={lang.language === 'cn' ? 'active' : ''}
-        >
-          Vietnamese
-        </Menu.Item>
-      </Menu>
-    </StyledWrapLanguageDropDown>
-  );
-
-  return (
-    <Dropdown
-      overlay={menu}
-      placement="bottomRight"
-      trigger={['click']}
-    >
-      <StyledWrapLanguage onClick={e => e.preventDefault()}>
-        <div>{lang.language === 'en' && <UKFlagIcon />}</div>
-        <div>{lang.language === 'cn' && <VNFlagIcon />}</div>
-        <CaretDownOutlined className="custom-icon" />
-      </StyledWrapLanguage>
-    </Dropdown>
-  );
-};
-
-const MenuDropdown = () => {
-  const navigate = useNavigate();
-  const dispatch = useAppDispatch();
-  const { t } = useTranslation();
-  const [isOpen, setIsOpen] = useState<boolean>(false);
-  const email = useAppSelector(selectAuth);
-  const handleLogout = async () => {
-    try {
-      await authAPI.logout();
-      removeFormLS(AUTH_USER);
-      dispatch(logout());
-      navigate(PATH_LOGIN);
-      handleCloseModal();
-    } catch (error) {}
-  };
-  function getFirstTwoChars(email: any) {
-    return email?.substring(0, 2) || '';
-  }
-
-  const handleCloseModal = () => {
-    setIsOpen(false);
-  };
-
-  const handleOpenModal = () => {
-    setIsOpen(true);
-  };
-
-  const menu = (
-    <StyledMenuAccount>
-      <Menu>
-        <div className="wrap-name">
-          <div className="user-name">
-            <AppTextBodyMedium $color={APP_COLORS.white}>
-              {getFirstTwoChars(email?.accountInfo?.email)}
-            </AppTextBodyMedium>
-          </div>
-          <div className="user-email">
-            <AppText
-              $fontSize={14}
-              $fontWeight={500}
-              $color={APP_COLORS.neutral800}
-            >
-              {email?.accountInfo?.email}
-            </AppText>
-          </div>
-        </div>
-
-        {/* <Menu.Item key="1">
-          <AppText
-            $fontSize={14}
-            $fontWeight={500}
-            $color={APP_COLORS.neutral800}
-          >
-            Account Settings
-          </AppText>
-        </Menu.Item>
-        <Menu.Item key="2">
-          <AppText
-            $fontSize={14}
-            $fontWeight={500}
-            $color={APP_COLORS.neutral800}
-          >
-            Help & Support
-          </AppText>
-        </Menu.Item> */}
-        <Menu.Item
-          key="3"
-          onClick={handleOpenModal}
-        >
-          <AppText
-            $fontSize={14}
-            $fontWeight={500}
-            $color={APP_COLORS.red800}
-          >
-            {t('logout')}
-          </AppText>
-        </Menu.Item>
-      </Menu>
-    </StyledMenuAccount>
-  );
-
-  return (
-    <div>
-      <Dropdown
-        overlay={menu}
-        placement="bottomRight"
-        trigger={['click']}
-      >
-        <StyledWrapUser onClick={e => e.preventDefault()}>
-          <div className="userName">
-            <AppTextBodyMedium $color={APP_COLORS.white}>
-              {getFirstTwoChars(email?.accountInfo?.email)}
-            </AppTextBodyMedium>
-          </div>
-          <CaretDownOutlined className="custom-icon" />
-        </StyledWrapUser>
-      </Dropdown>
-      <ModalConfirm
-        open={isOpen}
-        onClose={handleCloseModal}
-        textButtonLeft={t('labels.confirmLogout')}
-        textButtonRight={t('labels.no')}
-        buttonLeft
-        buttonRight
-        image={IMAGES.logoutImage}
-        title={`${t('logout')}?`}
-        description={t('descriptionLogout')}
-        onClickLeftButton={handleLogout}
-        onClickRightButton={handleCloseModal}
-      ></ModalConfirm>
-    </div>
-  );
-};
+import { useHeaderSearch } from '@hooks';
 
 export const Header = () => {
+  const location = useLocation();
+  const [search, setSearch] = useState('');
+  const { setSearchContent } = useHeaderSearch();
+
+  const getPathName = () => {
+    if (location.pathname === PATH_CALLS) {
+      return 'Quản lý cuộc gọi';
+    } else if (location.pathname === PATH_CUSTOMERS) {
+      return 'Quản lý khách hàng';
+    }
+  };
+
   return (
     <HeaderWrapper>
-      <LanguageDropdown />
-      {/* <BellIconWrapper>
-        {noti ? <BellNotiIcon /> : <BellIcon />}
-      </BellIconWrapper> */}
-      <MenuDropdown />
+      <AppText
+        $fontSize={22}
+        $fontWeight={400}
+        className="!text-[#a3a19a]"
+      >
+        {getPathName()}
+      </AppText>
+
+      <div className="flex items-center justify-between border border-black !h-[56px] !w-[320px] !px-0 !rounded-[14px]">
+        <AppInput
+          placeholder="Tìm kiếm"
+          name="search"
+          className="!border-none"
+          containerClassName="!border-none"
+          onChange={(e: ChangeEvent<HTMLInputElement>) =>
+            setSearch(e.target.value)
+          }
+          inputStyle={{
+            padding: '0 16px',
+            border: 'none',
+            borderRadius: '0',
+          }}
+        />
+        <img
+          src={IMAGES.searchImage}
+          alt="search"
+          className="!h-[42px] border-s border-black pl-3 cursor-pointer"
+          onClick={() => setSearchContent(search)}
+        />
+      </div>
     </HeaderWrapper>
   );
 };
 const HeaderWrapper = styled.div`
   position: fixed;
   width: 100%;
+  padding-left: 18%;
   z-index: 10;
   display: flex;
   align-items: center;
-  justify-content: flex-end;
+  justify-content: space-between;
   padding-right: 48px;
-  height: 64px;
+  height: ${APP_HEADER_HEIGHT};
   background-color: #fff;
+  border-bottom: 2px solid #000;
 `;
 
 const StyledWrapUser = styled.div`

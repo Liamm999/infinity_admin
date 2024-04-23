@@ -4,6 +4,7 @@ export type ILogin = {
 };
 
 export type IRegister = {
+  fullName: string;
   username: string;
   email: string;
   password: string;

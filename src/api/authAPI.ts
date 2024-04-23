@@ -11,6 +11,7 @@ export const authAPI = {
   register: (body: IRegister) => {
     const url = API_URL.AUTH.REGISTER;
     return ApiClient.post(url, {
+      fullName: body.fullName,
       username: body.username,
       password: body.password,
       confirmPassword: body.confirmPassword,

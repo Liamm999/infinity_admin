@@ -1,4 +1,5 @@
 // import { BreadcrumbsModule } from '@modules';
+import { APP_HEADER_HEIGHT } from '@config';
 import { StyledCol, StyledPageLayout } from './PageLayoutStyle';
 
 export interface IProps {
@@ -12,7 +13,7 @@ export const PageLayout = (props: IProps) => {
 
   return (
     <StyledPageLayout
-      className="app__main-content"
+      className={`app__main-content`}
       $haveSidebar={sidebar}
     >
       {/* {breadcrumbs && <BreadcrumbsModule />} */}

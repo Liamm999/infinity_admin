@@ -7,4 +7,10 @@ export const API_URL = {
     LOGIN: '/login',
     LOGOUT: '/logout',
   },
+
+  CALLS: {
+    DATA: '/calls',
+    SEARCH: '/searchCall',
+    FILTER_CALL: '/filter-calls',
+  },
 };

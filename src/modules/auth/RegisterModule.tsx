@@ -28,9 +28,12 @@ export const RegisterModule = () => {
     try {
       dispatch(setLoading(true));
       const res: any = await authAPI.register(value);
-      console.log(res);
-      // if (res.access_token) {
-      // }
+      if (res) {
+        showAppToast('Đăng kí thành công');
+        setTimeout(() => {
+          navigate('/login');
+        }, 500);
+      }
     } catch (error: any) {
       showAppToast(error?.response?.data?.message, 'error');
     } finally {

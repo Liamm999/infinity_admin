@@ -1,10 +1,13 @@
-import { Navigate, Outlet } from 'react-router-dom';
+import { Navigate, Outlet, useNavigate } from 'react-router-dom';
 
 import { selectAuth, useAppSelector } from '@redux';
 import { PATH_LOGIN } from '@routes';
 
 export const AuthRoute = () => {
-  const { accessToken } = useAppSelector(selectAuth);
+  const { user } = useAppSelector(selectAuth);
+  const navigate = useNavigate();
 
-  return accessToken ? <Navigate to={PATH_LOGIN} /> : <Outlet />;
+  if (user && user.userId > 0) navigate('/calls');
+
+  return user && user.userId > 0 ? <Navigate to={PATH_LOGIN} /> : <Outlet />;
 };

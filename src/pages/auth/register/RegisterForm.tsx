@@ -39,6 +39,23 @@ export const RegisterForm = memo((props: IProps) => {
       >
         <div className="w-full">
           <AppText className="!text-[26px] !text-black !font-[400]">
+            Họ và tên
+          </AppText>
+          <AppInput
+            name="fullName"
+            className="!h-[48px] w-full !px-0 items-center !rounded-none !border-black"
+            containerClassName="w-full"
+            onChange={() => {}}
+            inputStyle={{
+              padding: '0 8px',
+            }}
+            errors={errors['fullName']?.message}
+            register={register}
+            required
+          />
+        </div>
+        <div className="w-full">
+          <AppText className="!text-[26px] !text-black !font-[400]">
             Tên người dùng
           </AppText>
           <AppInput
