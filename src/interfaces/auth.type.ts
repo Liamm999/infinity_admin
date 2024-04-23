@@ -1,9 +1,11 @@
 export type ILogin = {
-  email: string;
+  username: string;
   password: string;
 };
 
 export type IRegister = {
+  fullName: string;
+  username: string;
   email: string;
   password: string;
   confirmPassword: string;

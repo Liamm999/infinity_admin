@@ -12,29 +12,37 @@ export const LoginSchema = yup.object().shape({
 });
 
 export const RegisterSchema = yup.object().shape({
+  fullName: yup
+    .string()
+    .trim()
+    .required('Không được bỏ trống trường này')
+    .max(50, 'maxCharacters'),
   username: yup
     .string()
     .trim()
-    .required('firstNameRequired')
+    .required('Không được bỏ trống trường này')
     .max(50, 'maxCharacters')
-    .matches(onlyTextRegex, 'onlyHaveText'),
+    .matches(
+      onlyTextRegex,
+      'Tên người dùng viết liền và không chứa kí tự đặc biệt',
+    ),
   email: yup
     .string()
     .trim()
-    .required('emailRequired')
-    .email('emailInValid')
-    .matches(emailValidationRegex, 'emailInValid'),
+    .required('Không được bỏ trống trường này')
+    .email('Email sai định dạng')
+    .matches(emailValidationRegex, 'Email sai định dạng'),
   password: yup
     .string()
     .trim()
-    .required('passwordRequired')
-    .min(8, 'passwordLengthInvalid')
-    .max(32, 'passwordLengthInvalid'),
+    .required('Không được bỏ trống trường này')
+    .min(8, 'Mật khẩu phải dài ít nhất 8 kí tự')
+    .max(32, 'Mật khẩu dài tối đa 32 kí tự'),
   // .matches(strongPasswordValidationRegex, 'passwordFormatInvalid'),
   confirmPassword: yup
     .string()
-    .required('confirmPasswordIsRequired')
-    .oneOf([yup.ref('password')], 'confirmPasswordNotMatch'),
+    .required('Không được bỏ trống trường này')
+    .oneOf([yup.ref('password')], 'Nhập lại mật khẩu phải trùng với mật khẩu'),
 });
 
 export const ForgotPasswordSchema = yup.object().shape({

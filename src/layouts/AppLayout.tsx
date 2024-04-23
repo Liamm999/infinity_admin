@@ -5,13 +5,13 @@ import {
   selectApp,
   setAppLanguage,
   useAppDispatch,
-  useAppSelector
+  useAppSelector,
 } from '@redux';
 import {
   APP_HEADER_HEIGHT,
   MAT_SM_SCREEN_WIDTH,
   SIDEBAR_COLLAPSED_WIDTH,
-  SIDEBAR_WIDTH
+  SIDEBAR_WIDTH,
 } from '@config';
 import { type ILayout } from '@interfaces';
 import { useTranslation } from 'react-i18next';
@@ -43,7 +43,7 @@ export const AppLayout = (props: ILayout) => {
 
 const StyledAppLayout = styled.div`
   min-height: 100vh;
-  background-color: #eaf4ff;
+  background-color: #eeeded;
 `;
 
 const StyledPageInner = styled.div<{
@@ -55,7 +55,6 @@ const StyledPageInner = styled.div<{
   transition: all 0.3s;
   margin-left: ${p =>
     p.sidebarCollapsed ? SIDEBAR_COLLAPSED_WIDTH : SIDEBAR_WIDTH};
-  padding: calc(${APP_HEADER_HEIGHT} + 3rem) 4.8rem;
   display: flex;
   flex-direction: column;
   position: relative;

@@ -1,10 +1,16 @@
 import { IMAGES } from '@assets';
-import { AppTextBodyMedium } from '@components';
+import { AppInput, AppText, AppTextBodyMedium } from '@components';
 import { APP_COLORS } from '@themes';
 import styled from 'styled-components';
-import { Link, useLocation } from 'react-router-dom';
-import { PATH_SALES_ACTIVITY, PATH_STS_EVENTS } from '@routes';
-import { useTranslation } from 'react-i18next';
+import {
+  Link,
+  useLocation,
+  useParams,
+  useSearchParams,
+} from 'react-router-dom';
+import { selectAuth, useAppSelector } from '@redux';
+import { PATH_CALLS, PATH_CUSTOMERS } from '@routes';
+import { useQueryClient } from 'react-query';
 
 interface OptionProps {
   $active?: boolean;
@@ -12,27 +18,117 @@ interface OptionProps {
 
 export const SidebarModule = () => {
   const location = useLocation();
-  const { t } = useTranslation();
+  const [searchParams, setSearchParams] = useSearchParams();
+
+  const { user } = useAppSelector(selectAuth);
+
+  const handleFilter = (value: number, check: boolean) => {
+    if (check) {
+      setSearchParams(`?statusId=${value}`);
+    }
+    if (Number(searchParams.get('statusId')) === value) {
+      setSearchParams(``);
+    }
+  };
+
   return (
     <SidebarWrapper>
-      <Logo
-        src={IMAGES.logoImage}
-        alt="Logo"
-      />
-      <Link to={PATH_STS_EVENTS}>
-        <Option $active={location.pathname === PATH_STS_EVENTS}>
-          <AppTextBodyMedium $color={APP_COLORS.white}>
-            {t('stsEvents')}
-          </AppTextBodyMedium>
-        </Option>
-      </Link>
-      <Link to={PATH_SALES_ACTIVITY}>
-        <Option $active={location.pathname === PATH_SALES_ACTIVITY}>
-          <AppTextBodyMedium $color={APP_COLORS.white}>
-            {t('salesActivity')}
-          </AppTextBodyMedium>
-        </Option>
-      </Link>
+      <div>
+        <div className="w-full border-b border-[#EDC16CDE] pb-6 mb-8">
+          <Logo
+            src={IMAGES.logoImage}
+            alt="Logo"
+            className="!w-[75%] mx-auto mt-6"
+          />
+          <AppText
+            $fontSize={24}
+            $fontWeight={400}
+            className="!text-white text-center"
+          >
+            {user?.fullName ? user.fullName : user?.userName}
+          </AppText>
+        </div>
+
+        <div className="flex flex-col gap-8 w-full">
+          <Link to={PATH_CUSTOMERS}>
+            <Option $active={location.pathname === PATH_CUSTOMERS}>
+              <AppTextBodyMedium
+                className="!text-[22px]"
+                $color={APP_COLORS.primaryGolden}
+              >
+                Quản lý khách hàng
+              </AppTextBodyMedium>
+            </Option>
+          </Link>
+          <Link to={PATH_CALLS}>
+            <Option $active={location.pathname === PATH_CALLS}>
+              <AppTextBodyMedium
+                className="!text-[22px]"
+                $color={APP_COLORS.primaryGolden}
+              >
+                Quản lý cuộc gọi
+              </AppTextBodyMedium>
+            </Option>
+          </Link>
+        </div>
+      </div>
+
+      <div className="w-full py-[30px] px-4 border-y border-[#EDC16CDE] mb-20">
+        <span className="flex items-center gap-4">
+          <input
+            type="checkbox"
+            value={1}
+            onChange={e =>
+              handleFilter(Number(e.target.value), e.target.checked)
+            }
+            checked={Number(searchParams.get('statusId')) === 1}
+            className="!w-6"
+          />
+          <AppText
+            $fontSize={22}
+            $fontWeight={400}
+            className="!text-[#EDC16CDE]"
+          >
+            Mới
+          </AppText>
+        </span>
+        <span className="flex items-center gap-4">
+          <input
+            type="checkbox"
+            value={2}
+            onChange={e =>
+              handleFilter(Number(e.target.value), e.target.checked)
+            }
+            checked={Number(searchParams.get('statusId')) === 2}
+            className="!w-6"
+          />
+          <AppText
+            $fontSize={22}
+            $fontWeight={400}
+            className="!text-[#EDC16CDE]"
+          >
+            Kết nốt
+          </AppText>
+        </span>
+        <span className="flex items-center gap-4">
+          <input
+            type="checkbox"
+            value={3}
+            onChange={e =>
+              handleFilter(Number(e.target.value), e.target.checked)
+            }
+            checked={Number(searchParams.get('statusId')) === 3}
+            className="!w-6"
+          />
+          <AppText
+            $fontSize={22}
+            $fontWeight={400}
+            className="!text-[#EDC16CDE]"
+          >
+            Kết thúc
+          </AppText>
+        </span>
+      </div>
     </SidebarWrapper>
   );
 };
@@ -41,9 +137,10 @@ const SidebarWrapper = styled.div`
   width: 264px;
   height: 100%;
   z-index: 100;
-  background-color: ${APP_COLORS.blueDarker};
+  background-color: ${APP_COLORS.greenDarker};
   display: flex;
   flex-direction: column;
+  justify-content: space-between;
   position: fixed;
   top: 0;
   a {
@@ -58,19 +155,6 @@ const Logo = styled.img`
 `;
 
 const Option = styled.div<OptionProps>`
-  padding: 12px;
-  padding-left: 48px;
-  height: 54px;
-  display: flex;
-  align-items: center;
-  cursor: pointer;
-  transition: background-color 0.1s, border-right 0.3s;
-
-  &:hover {
-    background-color: ${APP_COLORS.blueHover};
-    border-right: 4px solid ${APP_COLORS.blueNormal};
-  }
-
-  background-color: ${p => p.$active && APP_COLORS.blueHover};
-  border-right: ${p => p.$active && `4px solid ${APP_COLORS.blueNormal}`};
+  color: ${APP_COLORS.darkerGolden} !important;
+  padding: 0 12px;
 `;

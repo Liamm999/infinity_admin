@@ -26,30 +26,26 @@ export const axiosClient = (baseURL?: string): AxiosInstance => {
       'Access-Control-Allow-Methods': 'GET,PUT,POST,DELETE,PATCH,OPTIONS',
       'Access-Control-Allow-Headers':
         'Origin, X-Requested-With, Content-Type, Accept',
-      client: 'customer'
+      client: 'customer',
     },
-    paramsSerializer: params => queryString.stringify(params)
+    paramsSerializer: params => queryString.stringify(params),
   });
 
   instance.interceptors.request.use(
     async function (config) {
-      const auth = store.getState()?.auth;
-      const app = store.getState()?.app;
-      const storeToken = auth?.accessToken;
-      const language = app?.language ?? appLanguageEnum.ENGLISH;
-      if (storeToken) {
-        LogApp('interceptors token', storeToken);
-        config.headers!.Authorization = `Bearer ${storeToken}`;
-      }
-      config.headers['Accept-Language'] = ['en, fr'];
-      config.headers!.locale = language;
+      // const auth = store.getState()?.auth;
+      // const storeToken = auth?.accessToken;
+      // if (storeToken) {
+      //   LogApp('interceptors token', storeToken);
+      //   config.headers!.Authorization = `Bearer ${storeToken}`;
+      // }
       return { ...config };
     },
     function (error) {
       // Do something with request error
 
       return Promise.reject(error);
-    }
+    },
   );
 
   instance.interceptors.response.use(
@@ -67,7 +63,7 @@ export const axiosClient = (baseURL?: string): AxiosInstance => {
         removeFormLS(AUTH_USER);
       }
       return Promise.reject(error);
-    }
+    },
   );
 
   return instance;

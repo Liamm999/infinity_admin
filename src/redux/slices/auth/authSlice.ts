@@ -1,8 +1,16 @@
 import { type PayloadAction, createSlice } from '@reduxjs/toolkit';
 import { type RootState } from '../../store';
 
+interface IUser {
+  role: string;
+  userId: number;
+  userName: string;
+  fullName?: string;
+}
+
 interface IAuthState {
   accessToken?: string;
+  user?: IUser;
   refreshToken?: string;
   accountInfo?: any;
   forgotEmail?: string;
@@ -15,10 +23,16 @@ const initialState: IAuthState = {
   accessToken: undefined,
   refreshToken: undefined,
   accountInfo: undefined,
+  user: {
+    role: '',
+    userId: -1,
+    userName: '',
+    fullName: undefined,
+  },
   verifyMailHash: undefined,
   verifyToken: undefined,
   resetPassHash: undefined,
-  forgotEmail: undefined
+  forgotEmail: undefined,
 };
 
 const authSlice = createSlice({
@@ -40,10 +54,13 @@ const authSlice = createSlice({
     setResetPassHash: (state, action: PayloadAction<string>) => {
       state.resetPassHash = action.payload;
     },
+    setUser: (state, action: PayloadAction<IUser>) => {
+      state.user = action.payload;
+    },
     logout: () => {
       return initialState;
-    }
-  }
+    },
+  },
 });
 
 export const selectAuth = (state: RootState) => state.auth;
@@ -51,9 +68,10 @@ export const selectAuth = (state: RootState) => state.auth;
 export const {
   setAccessToken,
   setAccountInfo,
+  setUser,
   setVerifyMailHash,
   setResetPassHash,
   setVerifyToken,
-  logout
+  logout,
 } = authSlice.actions;
 export default authSlice.reducer;

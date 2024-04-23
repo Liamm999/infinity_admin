@@ -10,6 +10,8 @@ import {
   ResetPasswordSuccessPage,
   AddStsEventPage,
   RegisterPage,
+  CallsPage,
+  CustomersPage,
 } from '@pages';
 import {
   PATH_404,
@@ -17,24 +19,17 @@ import {
   PATH_FORGOT_PASSWORD,
   PATH_RESET_PASSWORD,
   PATH_HOME,
-  PATH_STS_EVENTS,
-  PATH_OTP,
   PATH_RESET_PASSWORD_SUCCESS,
-  PATH_ADD_STS_EVENTS,
-  PATH_EDIT_STS_EVENTS,
   PATH_REGISTER,
+  PATH_CALLS,
+  PATH_CUSTOMERS,
 } from './navigation';
 import { AppLayout, ErrorLayout, AuthLayout } from '@layouts';
 
 export const routes: IRoute[] = [
   { path: PATH_HOME, page: HomePage, layout: AppLayout },
-  { path: PATH_STS_EVENTS, page: StsEventsPage, layout: AppLayout },
-  { path: PATH_ADD_STS_EVENTS, page: AddStsEventPage, layout: AppLayout },
-  {
-    path: `${PATH_EDIT_STS_EVENTS}/:id`,
-    page: AddStsEventPage,
-    layout: AppLayout,
-  },
+  { path: PATH_CALLS, page: CallsPage, layout: AppLayout },
+  { path: PATH_CUSTOMERS, page: CustomersPage, layout: AppLayout },
 
   // 404
   { path: PATH_404, page: NotFoundPage, layout: ErrorLayout },
@@ -62,7 +57,6 @@ export const authRoutes: IRoute[] = [
     page: ResetPasswordSuccessPage,
     auth: true,
   },
-  { path: PATH_OTP, page: OTPPage, auth: true },
   { page: NotFoundPage, layout: ErrorLayout },
 ];
 

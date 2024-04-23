@@ -9,7 +9,7 @@ export const HOUR_FORMAT = 'hh:mm A';
 export const SIDEBAR_WIDTH = '264px';
 export const SIDEBAR_COLLAPSED_WIDTH = '105px';
 export const SIDEBAR_ICON_SIZE = '24px';
-export const APP_HEADER_HEIGHT = '56px';
+export const APP_HEADER_HEIGHT = '168px';
 export const APP_MOBILE_HEADER_HEIGHT = '40px';
 export const HEADER_PADDING_TOP = '20px';
 
@@ -23,7 +23,7 @@ export const BREAK_POINT = {
   large_screen: '1400px',
   desktop: '1280px',
   tablet: '1024px',
-  mobile: '576px'
+  mobile: '576px',
 };
 
 export const emailValidationRegex =

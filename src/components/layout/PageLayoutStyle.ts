@@ -1,9 +1,11 @@
 import styled, { css } from 'styled-components';
 import { Row, Col } from 'antd';
+import { APP_HEADER_HEIGHT } from '@config';
 
 export const StyledPageLayout = styled.div<{
   $haveSidebar?: boolean;
 }>`
+  margin-top: ${APP_HEADER_HEIGHT};
   position: relative;
   height: auto;
   ${p =>

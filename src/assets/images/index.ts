@@ -5,6 +5,7 @@ import imageBackgroundLogin from './ImageBackgroundLogin.png';
 import logoutImage from './logout_image.png';
 import confirmImage from './confirm_image.png';
 import CRMImage from './CRMImage.png';
+import searchImage from './searchIamge.png';
 
 export const IMAGES = {
   errorImage,
@@ -14,4 +15,5 @@ export const IMAGES = {
   logoutImage,
   confirmImage,
   CRMImage,
+  searchImage,
 };

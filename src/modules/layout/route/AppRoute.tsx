@@ -4,7 +4,7 @@ import { selectAuth, useAppSelector } from '@redux';
 import { PATH_LOGIN } from '@routes';
 
 export const AppRoute = () => {
-  const { accessToken } = useAppSelector(selectAuth);
+  const { user } = useAppSelector(selectAuth);
 
-  return accessToken ? <Outlet /> : <Navigate to={PATH_LOGIN} />;
+  return user && user.userId > 0 ? <Outlet /> : <Navigate to={PATH_LOGIN} />;
 };

@@ -3,11 +3,7 @@ import { UseFormReturn } from 'react-hook-form';
 import { useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
 
-import {
-  AppButton,
-  AppInput,
-  AppText,
-} from '@components';
+import { AppButton, AppInput, AppText } from '@components';
 import { APP_COLORS } from '@themes';
 import { IMAGES, Logo } from '@assets';
 
@@ -66,6 +62,7 @@ export const LoginForm = memo((props: IProps) => {
           <AppInput
             placeholder="Mật Khẩu"
             name="password"
+            type="password"
             className="!h-[72px] w-full !px-0 items-center"
             containerClassName="w-full mt-[18px]"
             onChange={() => {}}
