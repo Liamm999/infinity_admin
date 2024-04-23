@@ -3,6 +3,7 @@ import { type RootState } from '../../store';
 
 interface IAuthState {
   accessToken?: string;
+  userId?: number;
   refreshToken?: string;
   accountInfo?: any;
   forgotEmail?: string;
@@ -15,10 +16,11 @@ const initialState: IAuthState = {
   accessToken: undefined,
   refreshToken: undefined,
   accountInfo: undefined,
+  userId: undefined,
   verifyMailHash: undefined,
   verifyToken: undefined,
   resetPassHash: undefined,
-  forgotEmail: undefined
+  forgotEmail: undefined,
 };
 
 const authSlice = createSlice({
@@ -40,10 +42,13 @@ const authSlice = createSlice({
     setResetPassHash: (state, action: PayloadAction<string>) => {
       state.resetPassHash = action.payload;
     },
+    setUserId: (state, action: PayloadAction<number>) => {
+      state.userId = action.payload;
+    },
     logout: () => {
       return initialState;
-    }
-  }
+    },
+  },
 });
 
 export const selectAuth = (state: RootState) => state.auth;
@@ -54,6 +59,6 @@ export const {
   setVerifyMailHash,
   setResetPassHash,
   setVerifyToken,
-  logout
+  logout,
 } = authSlice.actions;
 export default authSlice.reducer;

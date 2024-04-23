@@ -1,14 +1,16 @@
 import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 
-// import { useAppDispatch } from '@/redux/hooks';
+import { useAppDispatch } from '@/redux/hooks';
 import { useNavigate } from 'react-router-dom';
 import { RegisterSchema } from '@validations';
-// import { showAppToast } from '@utils';
+import { showAppToast } from '@utils';
 import { RegisterForm } from '@pages/auth/register';
+import { authAPI } from '@api';
+import { setLoading } from '@redux';
 
 export const RegisterModule = () => {
-  //   const dispatch = useAppDispatch();
+  const dispatch = useAppDispatch();
   const navigate = useNavigate();
 
   const form = useForm({
@@ -23,7 +25,17 @@ export const RegisterModule = () => {
   };
 
   const handleSubmitForm = handleSubmit(async value => {
-    return value;
+    try {
+      dispatch(setLoading(true));
+      const res: any = await authAPI.register(value);
+      console.log(res);
+      // if (res.access_token) {
+      // }
+    } catch (error: any) {
+      showAppToast(error?.response?.data?.message, 'error');
+    } finally {
+      dispatch(setLoading(false));
+    }
   });
 
   return (
