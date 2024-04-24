@@ -13,4 +13,10 @@ export const API_URL = {
     SEARCH: '/searchCall',
     FILTER_CALL: '/filter-calls',
   },
+
+  CUSTOMER: {
+    DATA: '/customer-data',
+    SEARCH: '/searchCall',
+    FILTER_CUSTOMER: '/filter-customer-data',
+  },
 };

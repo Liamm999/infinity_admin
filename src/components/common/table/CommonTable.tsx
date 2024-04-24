@@ -13,10 +13,9 @@ import { DeleteIcon, DuplicateIcon, EditIcon } from '@components';
 import { Link, useNavigate } from 'react-router-dom';
 import { IMAGES } from '@assets';
 import { useTranslation } from 'react-i18next';
-import { ICall } from '@interfaces/calls.type';
 
 interface IProps {
-  dataSource: ICall[];
+  dataSource: any[];
   columns: any[];
   onDeleteRow: (value: any) => void;
   totalPages?: number | 1;

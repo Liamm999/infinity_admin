@@ -1,5 +1,11 @@
+import CustomerModule from '@modules/customers/CustomerModule';
+
 export const CustomersPage = () => {
-  return <>Customer Page</>;
+  return (
+    <>
+      <CustomerModule />
+    </>
+  );
 };
 
 export default CustomersPage;
