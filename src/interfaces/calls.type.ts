@@ -12,3 +12,5 @@ export interface ICall {
   stt: number;
   userId: number;
 }
+
+export type ICreateCallRequest = Partial<ICall>;

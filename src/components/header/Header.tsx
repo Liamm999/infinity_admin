@@ -1,37 +1,19 @@
-import { Dropdown, Menu } from 'antd';
-import { CaretDownOutlined } from '@ant-design/icons';
+import { Space } from 'antd';
 import styled from 'styled-components';
-import {
-  AppInput,
-  AppText,
-  AppTextBodyMedium,
-  ModalConfirm,
-  UKFlagIcon,
-  VNFlagIcon,
-} from '@components';
+import { AppInput, AppText } from '@components';
 import { APP_COLORS } from '@themes';
-import { authAPI } from '@api';
-import { useLocation, useNavigate } from 'react-router-dom';
-import { PATH_CALLS, PATH_CUSTOMERS, PATH_LOGIN } from '@routes';
-import { APP_HEADER_HEIGHT, AUTH_USER } from '@config';
-import { removeFormLS } from '@utils';
-import {
-  logout,
-  selectApp,
-  selectAuth,
-  setAppLanguage,
-  useAppDispatch,
-  useAppSelector,
-} from '@redux';
+import { useLocation } from 'react-router-dom';
+import { PATH_CALLS, PATH_CUSTOMERS } from '@routes';
+import { APP_HEADER_HEIGHT } from '@config';
 import { ChangeEvent, useState } from 'react';
-import { useTranslation } from 'react-i18next';
 import { IMAGES } from '@assets';
-import { useHeaderSearch } from '@hooks';
+import { useHeaderButton, useHeaderSearch } from '@hooks';
 
 export const Header = () => {
   const location = useLocation();
   const [search, setSearch] = useState('');
   const { setSearchContent } = useHeaderSearch();
+  const { setType } = useHeaderButton();
 
   const getPathName = () => {
     if (location.pathname === PATH_CALLS) {
@@ -43,13 +25,43 @@ export const Header = () => {
 
   return (
     <HeaderWrapper>
-      <AppText
-        $fontSize={22}
-        $fontWeight={400}
-        className="!text-[#a3a19a]"
-      >
-        {getPathName()}
-      </AppText>
+      <div>
+        <AppText
+          $fontSize={22}
+          $fontWeight={400}
+          className="!text-[#a3a19a]"
+        >
+          {getPathName()}
+        </AppText>
+        {(location.pathname === PATH_CALLS ||
+          location.pathname === PATH_CUSTOMERS) && (
+          <Space className="gap-5 mt-7">
+            <button onClick={() => setType('create')}>
+              <img
+                src={IMAGES.IconCreate}
+                alt="create"
+                className="!h-[40px] cursor-pointer"
+              />
+            </button>
+
+            <button onClick={() => setType('save')}>
+              <img
+                src={IMAGES.IconSave}
+                alt="save"
+                className="!h-[40px] cursor-pointer"
+              />
+            </button>
+
+            <button onClick={() => setType('export')}>
+              <img
+                src={IMAGES.IconExport}
+                alt="export"
+                className="!h-[40px] cursor-pointer"
+              />
+            </button>
+          </Space>
+        )}
+      </div>
 
       <div className="flex items-center justify-between border border-black !h-[56px] !w-[320px] !px-0 !rounded-[14px]">
         <AppInput

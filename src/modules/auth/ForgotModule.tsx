@@ -3,15 +3,16 @@
 import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 
-// import { useAppDispatch } from '@/redux/hooks';
+import { useAppDispatch } from '@/redux/hooks';
 import { useNavigate } from 'react-router-dom';
 import { ForgotPasswordSchema } from '@validations';
-// import { LogApp, showAppToast } from '@utils';
+import { showAppToast } from '@utils';
 import { ForgotForm } from '@pages';
+import { setLoading } from '@redux';
+import { authAPI } from '@api';
 
 export const ForgotModule = () => {
-  // const dispatch = useAppDispatch();
-  // const { t } = useTranslation();
+  const dispatch = useAppDispatch();
   const navigate = useNavigate();
 
   const form = useForm({
@@ -26,7 +27,17 @@ export const ForgotModule = () => {
   };
 
   const handleSubmitForm = handleSubmit(async value => {
-    return value;
+    try {
+      dispatch(setLoading(true));
+      const res: any = await authAPI.forgotPassword(value.email);
+      if (res) {
+        showAppToast(res, 'success');
+      }
+    } catch (error: any) {
+      showAppToast(error?.response?.data, 'error');
+    } finally {
+      dispatch(setLoading(false));
+    }
   });
 
   return (

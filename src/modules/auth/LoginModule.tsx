@@ -30,12 +30,14 @@ export const LoginModule = () => {
     try {
       dispatch(setLoading(true));
       const res: any = await authAPI.login(value);
-      if (res.userId) {
+      if (res.userId > 0) {
         dispatch(setUser(res));
-        showAppToast('Đăng nhập thành công');
+        showAppToast('Đăng nhập thành công', 'success');
         setTimeout(() => {
           navigate('/calls');
         }, 500);
+      } else {
+        showAppToast('Đăng nhập không thành công', 'error');
       }
     } catch (error: any) {
       showAppToast(error?.response?.data?.message, 'error');

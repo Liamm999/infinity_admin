@@ -1,6 +1,6 @@
 import { ApiClient } from '@api/axiosInstance';
 import { API_URL } from '@api/config';
-import { ICall } from '@interfaces/calls.type';
+import { ICall, ICreateCallRequest } from '@interfaces/calls.type';
 
 export const CallsApi = {
   getCallsData: () => {
@@ -15,4 +15,11 @@ export const CallsApi = {
     const url = `${API_URL.CALLS.FILTER_CALL}?statusId=${id}`;
     return ApiClient.get(url);
   },
+  createCall: (body: ICreateCallRequest) => {
+    const url = `${API_URL.CALLS.DATA}`;
+    return ApiClient.post(url, body);
+  },
+  deleteCallById: (id: number) => {
+    
+  }
 };

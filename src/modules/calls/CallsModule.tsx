@@ -1,17 +1,31 @@
 import { CallsApi } from '@api';
+import { IMAGES } from '@assets';
 import { CommonTable } from '@components/common/table/CommonTable';
-import { useHeaderSearch } from '@hooks';
+import { useHeaderButton, useHeaderSearch } from '@hooks';
 import { ICall } from '@interfaces/calls.type';
 import { showAppToast } from '@utils';
+import { Space } from 'antd';
 import { useEffect, useState } from 'react';
 import { useSearchParams } from 'react-router-dom';
 
 const CallsModule = () => {
   const [callsData, setCallsData] = useState<ICall[]>([]);
   const { searchContent } = useHeaderSearch();
+  const { setType } = useHeaderButton();
   const [searchParams] = useSearchParams();
 
   const searchContentByPhoneNumber = async (search: string) => {
+    try {
+      const res: any = await CallsApi.searchData(search);
+      if (res) {
+        setCallsData(res);
+      }
+    } catch (error) {
+      showAppToast(error);
+    }
+  };
+
+  const handleDeleteCall = async (callId: number) => {
     try {
       const res: any = await CallsApi.searchData(search);
       if (res) {
@@ -113,51 +127,28 @@ const CallsModule = () => {
       key: 'record',
       // render: (league: any) => league.leagueName,
     },
-    // {
-    //   title: t('action'),
-    //   dataIndex: 'action1',
-    //   key: 'action1',
-    //   render: (_: any, record: any) => (
-    //     <Space size="middle">
-    //       <Dropdown
-    //         overlay={
-    //           <Menu>
-    //             <Menu.Item
-    //               key="edit"
-    //               icon={<EditIcon />}
-    //               onClick={() => handleEdit(record)}
-    //             >
-    //               {t('table.edit')}
-    //             </Menu.Item>
-    //             <Menu.Item
-    //               key="duplicate"
-    //               icon={<DuplicateIcon />}
-    //               onClick={() => onDuplicate(record.eventid)}
-    //             >
-    //               {t('table.duplicate')}
-    //             </Menu.Item>
-    //             <Menu.Item
-    //               key="delete"
-    //               icon={<DeleteIcon />}
-    //               onClick={() => onDeleteRow(record)}
-    //             >
-    //               {t('table.delete')}
-    //             </Menu.Item>
-    //           </Menu>
-    //         }
-    //         placement="bottomRight"
-    //       >
-    //         <div
-    //           style={{
-    //             cursor: 'pointer',
-    //           }}
-    //         >
-    //           <EllipsisOutlined />
-    //         </div>
-    //       </Dropdown>
-    //     </Space>
-    //   ),
-    // },
+    {
+      dataIndex: 'action',
+      key: 'action',
+      render: (_: any, record: any) => (
+        <Space size="small">
+          <button onClick={() => setType('edit')}>
+            <img
+              src={IMAGES.IconEdit}
+              alt="edit"
+              className="!h-[40px] cursor-pointer"
+            />
+          </button>
+          <button>
+            <img
+              src={IMAGES.IconUnseen}
+              alt="edit"
+              className="!h-[40px] cursor-pointer"
+            />
+          </button>
+        </Space>
+      ),
+    },
   ];
   return (
     <div>

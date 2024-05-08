@@ -1,10 +1,16 @@
 import { CustomerApi } from '@api';
+import { IMAGES } from '@assets';
+import { DataTypeContainer } from '@components';
 import { CommonTable } from '@components/common/table/CommonTable';
 import { useHeaderSearch } from '@hooks';
 import { ICustomer } from '@interfaces/customer.type';
 import { showAppToast } from '@utils';
+import { getCallStatus } from '@utils/getCallStatus';
+import { getDataTypeColor } from '@utils/getDataTypeColor';
+import { Space } from 'antd';
 import { useEffect, useState } from 'react';
 import { useSearchParams } from 'react-router-dom';
+import styled from 'styled-components';
 
 const CustomerModule = () => {
   const [customerData, setCustomerData] = useState<ICustomer[]>([]);
@@ -78,6 +84,12 @@ const CustomerModule = () => {
       title: 'Kiểu dữ liệu',
       dataIndex: 'datatype',
       key: 'datatype',
+      align: 'center',
+      render: (record: any) => (
+        <DataTypeContainer $bgColor={getDataTypeColor(record)}>
+          <p>{record}</p>
+        </DataTypeContainer>
+      ),
     },
     {
       title: 'ID khách hàng',
@@ -88,12 +100,6 @@ const CustomerModule = () => {
       title: `SĐT`,
       dataIndex: 'phoneNumber',
       key: 'phoneNumber',
-    },
-    {
-      title: `Bắt đầu`,
-      dataIndex: 'start',
-      key: 'start',
-      // render: (city: any) => city.cityName,
     },
     {
       title: 'Họ và tên khách hàng',
@@ -111,53 +117,35 @@ const CustomerModule = () => {
       title: `Trạng Thái`,
       dataIndex: 'staId',
       key: 'staId',
-      // render: (league: any) => league.leagueName,
+      render: (record: any) => (
+        <DataTypeContainer $bgColor={getCallStatus(record).color}>
+          {getCallStatus(record).status}
+        </DataTypeContainer>
+      ),
     },
-    // {
-    //   title: t('action'),
-    //   dataIndex: 'action1',
-    //   key: 'action1',
-    //   render: (_: any, record: any) => (
-    //     <Space size="middle">
-    //       <Dropdown
-    //         overlay={
-    //           <Menu>
-    //             <Menu.Item
-    //               key="edit"
-    //               icon={<EditIcon />}
-    //               onClick={() => handleEdit(record)}
-    //             >
-    //               {t('table.edit')}
-    //             </Menu.Item>
-    //             <Menu.Item
-    //               key="duplicate"
-    //               icon={<DuplicateIcon />}
-    //               onClick={() => onDuplicate(record.eventid)}
-    //             >
-    //               {t('table.duplicate')}
-    //             </Menu.Item>
-    //             <Menu.Item
-    //               key="delete"
-    //               icon={<DeleteIcon />}
-    //               onClick={() => onDeleteRow(record)}
-    //             >
-    //               {t('table.delete')}
-    //             </Menu.Item>
-    //           </Menu>
-    //         }
-    //         placement="bottomRight"
-    //       >
-    //         <div
-    //           style={{
-    //             cursor: 'pointer',
-    //           }}
-    //         >
-    //           <EllipsisOutlined />
-    //         </div>
-    //       </Dropdown>
-    //     </Space>
-    //   ),
-    // },
+    {
+      dataIndex: 'action',
+      key: 'action',
+      render: (_: any, record: any) => (
+        <Space size="small">
+          <img
+            src={IMAGES.IconEdit}
+            alt="edit"
+            className="!h-[40px] cursor-pointer"
+          />
+          <img
+            src={IMAGES.IconCoppy}
+            alt="edit"
+            className="!h-[40px] cursor-pointer"
+          />
+          <img
+            src={IMAGES.IconUnseen}
+            alt="edit"
+            className="!h-[40px] cursor-pointer"
+          />
+        </Space>
+      ),
+    },
   ];
   return (
     <div>

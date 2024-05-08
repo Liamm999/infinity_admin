@@ -1,16 +1,10 @@
 import { IMAGES } from '@assets';
-import { AppInput, AppText, AppTextBodyMedium } from '@components';
+import { AppText, AppTextBodyMedium } from '@components';
 import { APP_COLORS } from '@themes';
 import styled from 'styled-components';
-import {
-  Link,
-  useLocation,
-  useParams,
-  useSearchParams,
-} from 'react-router-dom';
-import { selectAuth, useAppSelector } from '@redux';
+import { Link, useLocation, useSearchParams } from 'react-router-dom';
+import { logout, selectAuth, useAppDispatch, useAppSelector } from '@redux';
 import { PATH_CALLS, PATH_CUSTOMERS } from '@routes';
-import { useQueryClient } from 'react-query';
 
 interface OptionProps {
   $active?: boolean;
@@ -19,6 +13,7 @@ interface OptionProps {
 export const SidebarModule = () => {
   const location = useLocation();
   const [searchParams, setSearchParams] = useSearchParams();
+  const dispatch = useAppDispatch();
 
   const { user } = useAppSelector(selectAuth);
 
@@ -72,63 +67,90 @@ export const SidebarModule = () => {
           </Link>
         </div>
       </div>
+      <SideBarContentWrapper>
+        <div className="w-full py-[30px] px-4 border-y border-[#EDC16CDE]">
+          <AppText
+            $fontSize={22}
+            $fontWeight={400}
+            className="!text-[#EDC16CDE] pb-6"
+          >
+            Lọc dữ liệu theo:
+          </AppText>
+          <span className="flex items-center gap-4">
+            <input
+              type="checkbox"
+              value={1}
+              onChange={e =>
+                handleFilter(Number(e.target.value), e.target.checked)
+              }
+              checked={Number(searchParams.get('statusId')) === 1}
+              className="!w-6"
+            />
+            <AppText
+              $fontSize={22}
+              $fontWeight={400}
+              className="!text-[#EDC16CDE]"
+            >
+              Mới
+            </AppText>
+          </span>
+          <span className="flex items-center gap-4">
+            <input
+              type="checkbox"
+              value={2}
+              onChange={e =>
+                handleFilter(Number(e.target.value), e.target.checked)
+              }
+              checked={Number(searchParams.get('statusId')) === 2}
+              className="!w-6"
+            />
+            <AppText
+              $fontSize={22}
+              $fontWeight={400}
+              className="!text-[#EDC16CDE]"
+            >
+              Kết nốt
+            </AppText>
+          </span>
+          <span className="flex items-center gap-4">
+            <input
+              type="checkbox"
+              value={3}
+              onChange={e =>
+                handleFilter(Number(e.target.value), e.target.checked)
+              }
+              checked={Number(searchParams.get('statusId')) === 3}
+              className="!w-6"
+            />
+            <AppText
+              $fontSize={22}
+              $fontWeight={400}
+              className="!text-[#EDC16CDE]"
+            >
+              Kết thúc
+            </AppText>
+          </span>
+        </div>
 
-      <div className="w-full py-[30px] px-4 border-y border-[#EDC16CDE] mb-20">
-        <span className="flex items-center gap-4">
-          <input
-            type="checkbox"
-            value={1}
-            onChange={e =>
-              handleFilter(Number(e.target.value), e.target.checked)
-            }
-            checked={Number(searchParams.get('statusId')) === 1}
-            className="!w-6"
+        <button
+          className="py-6 flex items-center gap-6"
+          onClick={() => {}}
+        >
+          <img
+            src={IMAGES.IconLogout}
+            alt="search"
+            className="!h-[42px] border-s border-black pl-3 cursor-pointer"
           />
           <AppText
             $fontSize={22}
             $fontWeight={400}
             className="!text-[#EDC16CDE]"
+            onClick={() => dispatch(logout())}
           >
-            Mới
+            Đăng xuất
           </AppText>
-        </span>
-        <span className="flex items-center gap-4">
-          <input
-            type="checkbox"
-            value={2}
-            onChange={e =>
-              handleFilter(Number(e.target.value), e.target.checked)
-            }
-            checked={Number(searchParams.get('statusId')) === 2}
-            className="!w-6"
-          />
-          <AppText
-            $fontSize={22}
-            $fontWeight={400}
-            className="!text-[#EDC16CDE]"
-          >
-            Kết nốt
-          </AppText>
-        </span>
-        <span className="flex items-center gap-4">
-          <input
-            type="checkbox"
-            value={3}
-            onChange={e =>
-              handleFilter(Number(e.target.value), e.target.checked)
-            }
-            checked={Number(searchParams.get('statusId')) === 3}
-            className="!w-6"
-          />
-          <AppText
-            $fontSize={22}
-            $fontWeight={400}
-            className="!text-[#EDC16CDE]"
-          >
-            Kết thúc
-          </AppText>
-        </span>
-      </div>
+        </button>
+      </SideBarContentWrapper>
     </SidebarWrapper>
   );
 };
@@ -158,3 +180,5 @@ const Option = styled.div<OptionProps>`
   color: ${APP_COLORS.darkerGolden} !important;
   padding: 0 12px;
 `;
+
+const SideBarContentWrapper = styled.div``;

@@ -139,3 +139,13 @@ export const AppTextBodyMedium = styled.h4<{
     margin-left: 4px;
   }
 `;
+
+export const DataTypeContainer = styled.div<{ $bgColor?: string }>`
+  margin: 0 auto;
+  width: fit-content;
+  text-align: center;
+  min-width: 100px;
+  border-radius: 99999px;
+  padding: 6px 18px;
+  background-color: ${props => props.$bgColor};
+`;
