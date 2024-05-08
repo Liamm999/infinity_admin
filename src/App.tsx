@@ -11,7 +11,7 @@ import { MainRouter } from '@modules';
 import { useTheme } from 'styled-components';
 import { ConfigProvider } from 'antd';
 import { selectApp, useAppSelector } from '@redux';
-import { HeaderSearchProvider } from '@hooks';
+import { HeaderButtonProvider, HeaderSearchProvider } from '@hooks';
 
 const queryClient = new QueryClient({
   defaultOptions: {
@@ -43,9 +43,11 @@ const App: React.FC = () => {
           }}
           renderEmpty={() => <></>}
         >
-          <HeaderSearchProvider>
-            <MainRouter />
-          </HeaderSearchProvider>
+          <HeaderButtonProvider>
+            <HeaderSearchProvider>
+              <MainRouter />
+            </HeaderSearchProvider>
+          </HeaderButtonProvider>
         </ConfigProvider>{' '}
         <AppToast />
         <AppSpin spinning={loading} />
