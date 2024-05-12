@@ -309,7 +309,7 @@ export const StyledAppInput = styled.div<{
     display: inline-block;
     margin-bottom: 10px;
     color: ${p => p.theme.colors.neutral800};
-    font-family: 'Hammersmith One', sans-serif;
+    font-family: 'Poppins', sans-serif;
     font-size: 1.4rem;
     font-style: normal;
     font-weight: 500;
@@ -455,7 +455,7 @@ export const StyledAppInput = styled.div<{
             `
           : css`
               color: ${APP_COLORS.fontLight};
-              font-family: 'Hammersmith One', sans-serif;
+              font-family: 'Poppins', sans-serif;
               font-size: 1.6rem;
               font-style: normal;
               font-weight: 400;
@@ -477,7 +477,7 @@ export const StyledAppInput = styled.div<{
             `
           : css`
               color: ${APP_COLORS.fontLight};
-              font-family: 'Hammersmith One', sans-serif;
+              font-family: 'Poppins', sans-serif;
               font-size: 1.6rem;
               font-style: normal;
               font-weight: 400;

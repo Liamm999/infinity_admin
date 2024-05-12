@@ -109,25 +109,21 @@ const CallsModule = () => {
       title: `Bắt đầu`,
       dataIndex: 'start',
       key: 'start',
-      // render: (city: any) => city.cityName,
     },
     {
       title: 'Kết thúc',
       dataIndex: 'end',
       key: 'end',
-      // render: (venue: any) => venue.venueName,
     },
     {
       title: `Thời lượng gọi`,
       dataIndex: 'duration',
       key: 'duration',
-      // render: (sport: any) => sport.sportName,
     },
     {
       title: `Ghi âm`,
       dataIndex: 'record',
       key: 'record',
-      // render: (league: any) => league.leagueName,
     },
     {
       dataIndex: 'action',

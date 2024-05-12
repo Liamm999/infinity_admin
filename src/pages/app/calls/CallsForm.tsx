@@ -23,8 +23,6 @@ export const CallsForm = memo((props: IProps) => {
     formState: { errors },
   } = form;
 
-  console.log(errors, '<===');
-
   return (
     <StyledSignUpWrapper>
       <form

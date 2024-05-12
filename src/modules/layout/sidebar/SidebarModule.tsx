@@ -5,6 +5,7 @@ import styled from 'styled-components';
 import { Link, useLocation, useSearchParams } from 'react-router-dom';
 import { logout, selectAuth, useAppDispatch, useAppSelector } from '@redux';
 import { PATH_CALLS, PATH_CUSTOMERS } from '@routes';
+import { Checkbox } from 'antd';
 
 interface OptionProps {
   $active?: boolean;
@@ -76,15 +77,13 @@ export const SidebarModule = () => {
           >
             Lọc dữ liệu theo:
           </AppText>
-          <span className="flex items-center gap-4">
-            <input
-              type="checkbox"
+          <span className="flex items-center gap-4 mb-2">
+            <Checkbox
               value={1}
               onChange={e =>
                 handleFilter(Number(e.target.value), e.target.checked)
               }
               checked={Number(searchParams.get('statusId')) === 1}
-              className="!w-6"
             />
             <AppText
               $fontSize={22}
@@ -94,33 +93,29 @@ export const SidebarModule = () => {
               Mới
             </AppText>
           </span>
-          <span className="flex items-center gap-4">
-            <input
-              type="checkbox"
+          <span className="flex items-center gap-4 mb-2">
+            <Checkbox
               value={2}
               onChange={e =>
                 handleFilter(Number(e.target.value), e.target.checked)
               }
               checked={Number(searchParams.get('statusId')) === 2}
-              className="!w-6"
             />
             <AppText
               $fontSize={22}
               $fontWeight={400}
               className="!text-[#EDC16CDE]"
             >
-              Kết nốt
+              Kết nối
             </AppText>
           </span>
           <span className="flex items-center gap-4">
-            <input
-              type="checkbox"
+            <Checkbox
               value={3}
               onChange={e =>
                 handleFilter(Number(e.target.value), e.target.checked)
               }
               checked={Number(searchParams.get('statusId')) === 3}
-              className="!w-6"
             />
             <AppText
               $fontSize={22}
@@ -181,4 +176,15 @@ const Option = styled.div<OptionProps>`
   padding: 0 12px;
 `;
 
-const SideBarContentWrapper = styled.div``;
+const SideBarContentWrapper = styled.div`
+  .ant-checkbox-inner {
+    background: transparent !important;
+    width: 3rem;
+    height: 3rem;
+    border: 1px solid ${APP_COLORS.primaryGolden};
+  }
+
+  .ant-checkbox-checked {
+    background-color: ${APP_COLORS.primaryGolden};
+  }
+`;

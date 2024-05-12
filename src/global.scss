@@ -2,6 +2,8 @@
 @tailwind components;
 @tailwind utilities;
 
+// import '../'
+
 * {
   box-sizing: border-box;
   margin: 0;
@@ -18,7 +20,7 @@ html {
   font-size: 62.5%;
   // font-size: 100%;
   -ms-overflow-style: -ms-autohiding-scrollbar;
-  font-family: 'Hammersmith One', sans-serif;
+  font-family: 'Poppins', sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
@@ -61,6 +63,20 @@ html {
   font-family: 'Bebas Kai';
   src: url('./assets/fonts/BebasKai/BebasKai.otf') format('truetype');
   font-weight: normal;
+}
+
+@font-face {
+  font-family: 'Poppins';
+  src: url('./assets/fonts/Poppins/DesignerVN-Poppins-Regular.ttf')
+    format('truetype');
+  font-weight: normal;
+}
+
+@font-face {
+  font-family: 'Poppins Bold';
+  src: url('./assets/fonts/Poppins/DesignerVN-Poppins-ExtraBold.ttf')
+    format('truetype');
+  font-weight: 700;
 }
 
 /* Helvetica Narrow */
@@ -176,7 +192,7 @@ html {
 }
 
 .desktop-h3 {
-  font-family: 'Hammersmith One';
+  font-family: 'Poppins';
   font-weight: 700;
   font-size: 2.8rem;
   line-height: 2.7rem;
@@ -185,7 +201,7 @@ html {
 
 .app-h4,
 .desktop-h4 {
-  font-family: 'Hammersmith One';
+  font-family: 'Poppins';
   font-weight: 500;
   font-size: 2.4rem;
   line-height: 2.3rem;
@@ -193,7 +209,7 @@ html {
 }
 
 .mobile-h4 {
-  font-family: 'Hammersmith One';
+  font-family: 'Poppins';
   font-weight: 500;
   font-size: 1.8rem;
   line-height: 1.8rem;
@@ -202,7 +218,7 @@ html {
 }
 
 .text-default {
-  font-family: 'Hammersmith One';
+  font-family: 'Poppins';
   font-weight: 400;
   font-size: 1.6rem;
   line-height: 1.8rem;
@@ -211,7 +227,7 @@ html {
 }
 
 .text-bold-link {
-  font-family: 'Hammersmith One';
+  font-family: 'Poppins';
   font-weight: 700;
   font-size: 1.6rem;
   line-height: 1.5rem;
@@ -219,7 +235,7 @@ html {
 }
 
 .text-app-link {
-  font-family: 'Hammersmith One';
+  font-family: 'Poppins';
   font-weight: 400;
   font-size: 1.4rem;
   line-height: 1.4rem;
@@ -241,7 +257,7 @@ html {
 }
 
 .desktop-textBoldLink {
-  font-family: 'Hammersmith One';
+  font-family: 'Poppins';
   font-weight: 700;
   font-size: 1.6rem;
   /* line-height: 1.5rem; */
@@ -249,7 +265,7 @@ html {
 }
 
 .mobile-textDefault {
-  font-family: 'Hammersmith One';
+  font-family: 'Poppins';
   font-weight: 400;
   font-size: 1.6rem;
   line-height: 1.8rem;
@@ -257,7 +273,7 @@ html {
 }
 
 .mobile-metadata {
-  font-family: 'Hammersmith One';
+  font-family: 'Poppins';
   font-weight: 500;
   font-size: 1.2rem;
   line-height: 1.1rem;
@@ -266,7 +282,7 @@ html {
 }
 
 .text-buttons {
-  font-family: 'Hammersmith One', sans-serif;
+  font-family: 'Poppins', sans-serif;
   font-size: 1.6rem;
   font-style: normal;
   font-weight: 500;
@@ -295,7 +311,7 @@ html {
 }
 
 .mobile-captions {
-  font-family: 'Hammersmith One';
+  font-family: 'Poppins';
   font-weight: 400;
   font-size: 1.4rem;
   line-height: 1.3rem;
@@ -303,7 +319,7 @@ html {
 }
 
 .button-text {
-  font-family: 'Hammersmith One', sans-serif;
+  font-family: 'Poppins', sans-serif;
   font-weight: 500;
   font-size: 1.6rem;
   text-align: center;
@@ -317,7 +333,7 @@ html {
 
 .app-metadata {
   font-size: 14px;
-  font-family: 'Hammersmith One';
+  font-family: 'Poppins';
   font-style: normal;
   font-weight: 500;
   line-height: normal;
@@ -327,7 +343,7 @@ html {
 .app-caption,
 .app-captions {
   font-size: 1.4rem;
-  font-family: 'Hammersmith One';
+  font-family: 'Poppins';
   line-height: 1.8rem;
   font-weight: 400;
 }
@@ -449,7 +465,7 @@ html {
 .mobile-button {
   height: 40px !important;
   padding: 10px 20px !important;
-  font-family: 'Hammersmith One';
+  font-family: 'Poppins';
   font-style: normal;
   font-weight: 500;
   font-size: 16px;
@@ -459,7 +475,7 @@ html {
 }
 
 .mobile-button-text {
-  font-family: 'Hammersmith One';
+  font-family: 'Poppins';
   font-style: normal;
   font-weight: 500;
   font-size: 16px;
@@ -530,7 +546,7 @@ html {
   color: red;
   font-size: 1.2rem;
   position: relative;
-  font-family: 'Hammersmith One';
+  font-family: 'Poppins';
 }
 
 .text-italic {
@@ -576,7 +592,7 @@ html {
     font-size: 12px;
   }
   .app-h4 {
-    font-family: 'Hammersmith One';
+    font-family: 'Poppins';
     font-weight: 500;
     font-size: 1.8rem;
     line-height: 1.8rem;

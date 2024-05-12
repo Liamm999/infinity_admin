@@ -10,7 +10,7 @@ export const AppText = styled.p<{
 }>`
   margin: 0;
   color: ${p => p.theme.colors.neutral800};
-  font-family: 'Hammersmith One', sans-serif;
+  font-family: 'Poppins', sans-serif;
   ${p =>
     p?.$color &&
     css`
@@ -52,7 +52,7 @@ export const AppH3 = styled.h3<{
   $letterSpacing?: number;
   $fontStyle?: 'italic' | 'normal' | 'oblique' | 'initial';
 }>`
-  font-family: 'Hammersmith One', sans-serif;
+  font-family: 'Poppins', sans-serif;
   font-size: 2.4rem;
   font-style: normal;
   font-weight: 700;
@@ -80,7 +80,7 @@ export const AppTextBodyRegular = styled.p<{
   $letterSpacing?: number;
   $fontStyle?: 'italic' | 'normal' | 'oblique' | 'initial';
 }>`
-  font-family: 'Hammersmith One', sans-serif;
+  font-family: 'Poppins', sans-serif;
   font-size: 1.6rem;
   font-style: normal;
   font-weight: 400;
@@ -109,7 +109,7 @@ export const AppTextBodyMedium = styled.h4<{
   $fontStyle?: 'italic' | 'normal' | 'oblique' | 'initial';
   required?: boolean;
 }>`
-  font-family: 'Hammersmith One', sans-serif;
+  font-family: 'Poppins', sans-serif;
   font-size: 1.6rem;
   font-style: normal;
   font-weight: 500;

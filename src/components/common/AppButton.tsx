@@ -51,7 +51,7 @@ export const AppButton = (props: IButton) => {
     textColor = APP_COLORS.white,
     onClick,
     onMouseEnter,
-    onMouseLeave
+    onMouseLeave,
   } = props;
 
   const { t } = useTranslation();
@@ -63,7 +63,7 @@ export const AppButton = (props: IButton) => {
 
   const onPressAction = debounce(debouncedOnPress, 300, {
     leading: true,
-    trailing: false
+    trailing: false,
   });
   return (
     <StyledButton
@@ -139,7 +139,7 @@ export const StyledButton = styled.div<{
   }
   .text-btn {
     display: inline-block;
-    font-family: 'Hammersmith One', sans-serif;
+    font-family: 'Poppins', sans-serif;
     font-style: normal;
     font-weight: 600;
     font-size: 16px;

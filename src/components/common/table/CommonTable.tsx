@@ -100,8 +100,8 @@ const StyledWrapTable = styled.div`
     > tr > th {
       border-radius: 0 !important;
       border: none;
-      font-weight: 600;
-      font-size: 12px;
+      font-weight: 700;
+      font-size: 16px;
       color: black;
       background: none;
       width: fit-content;

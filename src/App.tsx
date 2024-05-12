@@ -33,7 +33,7 @@ const App: React.FC = () => {
         <ConfigProvider
           theme={{
             token: {
-              fontFamily: theme.fonts.HammersmithOne,
+              fontFamily: theme.fonts.Poppins,
               colorPrimary: theme.colors.lightBlue300,
               fontSize: 16,
               fontWeightStrong: 400,
