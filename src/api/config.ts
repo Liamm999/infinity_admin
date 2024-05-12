@@ -12,7 +12,6 @@ export const API_URL = {
     DATA: '/calls',
     SEARCH: '/searchCall',
     FILTER_CALL: '/filter-calls',
-    DELETE: '/calls/{id}',
   },
 
   CUSTOMER: {

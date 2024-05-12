@@ -3,6 +3,7 @@ import { IMAGES } from '@assets';
 import { CommonTable } from '@components/common/table/CommonTable';
 import { useHeaderButton, useHeaderSearch } from '@hooks';
 import { ICall } from '@interfaces/calls.type';
+import CallsCreateEditModule from '@modules/calls/CallsCreateEditModule';
 import { showAppToast } from '@utils';
 import { Space } from 'antd';
 import { useEffect, useState } from 'react';
@@ -13,6 +14,7 @@ const CallsModule = () => {
   const { searchContent } = useHeaderSearch();
   const { setType } = useHeaderButton();
   const [searchParams] = useSearchParams();
+  const [currentCall, setCurrentCall] = useState<ICall>();
 
   const searchContentByPhoneNumber = async (search: string) => {
     try {
@@ -27,9 +29,9 @@ const CallsModule = () => {
 
   const handleDeleteCall = async (callId: number) => {
     try {
-      const res: any = await CallsApi.searchData(search);
+      const res: any = await CallsApi.deleteCallById(callId);
       if (res) {
-        setCallsData(res);
+        getCallData();
       }
     } catch (error) {
       showAppToast(error);
@@ -132,7 +134,12 @@ const CallsModule = () => {
       key: 'action',
       render: (_: any, record: any) => (
         <Space size="small">
-          <button onClick={() => setType('edit')}>
+          <button
+            onClick={() => {
+              setCurrentCall(record);
+              setType('edit');
+            }}
+          >
             <img
               src={IMAGES.IconEdit}
               alt="edit"
@@ -141,6 +148,7 @@ const CallsModule = () => {
           </button>
           <button>
             <img
+              onClick={() => handleDeleteCall(record.callId)}
               src={IMAGES.IconUnseen}
               alt="edit"
               className="!h-[40px] cursor-pointer"
@@ -151,17 +159,23 @@ const CallsModule = () => {
     },
   ];
   return (
-    <div>
-      <CommonTable
-        columns={columns}
-        onDuplicate={() => {}}
-        dataSource={callsData}
-        onDeleteRow={() => {}}
-        totalPages={callsData.length}
-        totalNumberOfElement={0}
-        onPageChange={() => {}}
+    <>
+      <div>
+        <CommonTable
+          columns={columns}
+          onDuplicate={() => {}}
+          dataSource={callsData}
+          onDeleteRow={() => {}}
+          totalPages={callsData.length}
+          totalNumberOfElement={0}
+          onPageChange={() => {}}
+        />
+      </div>
+      <CallsCreateEditModule
+        onSuccess={getCallData}
+        callData={currentCall}
       />
-    </div>
+    </>
   );
 };
 

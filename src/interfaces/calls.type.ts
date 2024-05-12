@@ -1,6 +1,6 @@
 export interface ICall {
   auId: number;
-  callDate: string | null;
+  callDate: string;
   callId: number;
   description: string;
   duration: string | number;
