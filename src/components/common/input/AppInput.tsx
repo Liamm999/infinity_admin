@@ -88,6 +88,7 @@ interface IInputProps {
   disableCopyPaste?: boolean;
   onlyNumber?: boolean | { allowDecimal: boolean };
   onlyWord?: boolean;
+  labelClassName?: string;
 }
 export const AppInput = forwardRef(
   (props: IInputProps, ref?: React.Ref<HTMLInputElement>) => {
@@ -133,6 +134,7 @@ export const AppInput = forwardRef(
       disableCopyPaste,
       onlyNumber,
       onlyWord,
+      labelClassName,
     } = props;
 
     const { t } = useTranslation();
@@ -215,7 +217,7 @@ export const AppInput = forwardRef(
       >
         {label && (
           <label
-            className="input__label"
+            className={`input__label ${labelClassName}`}
             htmlFor={name || label}
           >
             {t(label)}

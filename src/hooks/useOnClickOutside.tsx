@@ -9,7 +9,7 @@ export const useOnClickOutside = <T extends HTMLElement = HTMLElement>(
   useEffect(() => {
     const listener = (event: Event): void => {
       const el = ref?.current;
-      // eslint-disable-next-line @typescript-eslint/strict-boolean-expressions
+      // eslint-disable-next-line @typescript-eslint/strict-boolean-expressions, eqeqeq
       if (el == null || el.contains((event?.target as Node) || null)) {
         return;
       }

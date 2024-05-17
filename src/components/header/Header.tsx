@@ -5,15 +5,16 @@ import { APP_COLORS } from '@themes';
 import { useLocation } from 'react-router-dom';
 import { PATH_CALLS, PATH_CUSTOMERS } from '@routes';
 import { APP_HEADER_HEIGHT } from '@config';
-import { ChangeEvent, useState } from 'react';
+import { ChangeEvent, useMemo, useState } from 'react';
 import { IMAGES } from '@assets';
-import { useHeaderButton, useHeaderSearch } from '@hooks';
+import { useExport, useHeaderButton, useHeaderSearch } from '@hooks';
 
 export const Header = () => {
   const location = useLocation();
   const [search, setSearch] = useState('');
   const { setSearchContent } = useHeaderSearch();
   const { setType } = useHeaderButton();
+  const { onExport } = useExport();
 
   const getPathName = () => {
     if (location.pathname === PATH_CALLS) {
@@ -52,7 +53,7 @@ export const Header = () => {
               />
             </button>
 
-            <button onClick={() => setType('export')}>
+            <button onClick={() => onExport()}>
               <img
                 src={IMAGES.IconExport}
                 alt="export"

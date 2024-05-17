@@ -27,4 +27,8 @@ export const CallsApi = {
     const url = `${API_URL.CALLS.DATA}/${id}`;
     return ApiClient.delete(url);
   },
+  exportCalls: () => {
+    const url = `${API_URL.CALLS.EXPORT}`;
+    return ApiClient.get(url);
+  },
 };

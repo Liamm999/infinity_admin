@@ -5,6 +5,7 @@ import styled from 'styled-components';
 
 import { AppButton, AppInput, AppText } from '@components';
 import { APP_COLORS } from '@themes';
+import { useHeaderButton } from '@hooks';
 
 interface IProps {
   type?: string;
@@ -14,8 +15,10 @@ interface IProps {
   ) => Promise<void>;
 }
 
-export const CallsForm = memo((props: IProps) => {
+export const CustomersForm = memo((props: IProps) => {
   const { form, type = true, onSubmitForm } = props;
+  const { type: formType } = useHeaderButton();
+
   // const navigate = useNavigate();
 
   const {
@@ -50,64 +53,67 @@ export const CallsForm = memo((props: IProps) => {
             </div>
             <div className="w-full">
               <AppInput
-                label="Mô tả"
+                label="Tên khách hàng"
                 labelClassName="!text-[24px] !text-gray-500 !font-light !capitalize"
-                name="callDescription"
+                name="cusName"
                 className="!h-[55px] w-full !px-0 items-center !rounded-none !border-black"
                 containerClassName="w-full"
                 onChange={() => {}}
                 inputStyle={{
                   padding: '0 8px',
                 }}
-                errors={errors['callDescription']?.message}
+                errors={errors['cusName']?.message}
+                register={register}
+                required
+              />
+            </div>
+            {formType === 'create' && (
+              <div className="w-full">
+                <AppInput
+                  label="Id Khách hàng"
+                  labelClassName="!text-[24px] !text-gray-500 !font-light !capitalize"
+                  name="cusId"
+                  className="!h-[55px] w-full !px-0 items-center !rounded-none !border-black"
+                  containerClassName="w-full"
+                  onChange={() => {}}
+                  inputStyle={{
+                    padding: '0 8px',
+                  }}
+                  errors={errors['cusId']?.message}
+                  register={register}
+                  required
+                />
+              </div>
+            )}
+
+            <div className="w-full">
+              <AppInput
+                label="Id cuộc gọi"
+                labelClassName="!text-[24px] !text-gray-500 !font-light !capitalize"
+                name="callId"
+                className="!h-[55px] w-full !px-0 items-center !rounded-none !border-black"
+                containerClassName="w-full"
+                onChange={() => {}}
+                inputStyle={{
+                  padding: '0 8px',
+                }}
+                errors={errors['callId']?.message}
                 register={register}
                 required
               />
             </div>
             <div className="w-full">
               <AppInput
-                label="Thời lượng gọi"
+                label="Trạng thái"
                 labelClassName="!text-[24px] !text-gray-500 !font-light !capitalize"
-                name="callDuration"
+                name="staId"
                 className="!h-[55px] w-full !px-0 items-center !rounded-none !border-black"
                 containerClassName="w-full"
                 onChange={() => {}}
                 inputStyle={{
                   padding: '0 8px',
                 }}
-                errors={errors['callDuration']?.message}
-                register={register}
-                required
-              />
-            </div>
-            <div className="w-full">
-              <AppInput
-                label="Bắt đầu"
-                labelClassName="!text-[24px] !text-gray-500 !font-light !capitalize"
-                name="callStart"
-                className="!h-[55px] w-full !px-0 items-center !rounded-none !border-black"
-                containerClassName="w-full"
-                onChange={() => {}}
-                inputStyle={{
-                  padding: '0 8px',
-                }}
-                errors={errors['callStart']?.message}
-                register={register}
-                required
-              />
-            </div>
-            <div className="w-full">
-              <AppInput
-                label="Kết thúc"
-                labelClassName="!text-[24px] !text-gray-500 !font-light !capitalize"
-                name="callEnd"
-                className="!h-[55px] w-full !px-0 items-center !rounded-none !border-black"
-                containerClassName="w-full"
-                onChange={() => {}}
-                inputStyle={{
-                  padding: '0 8px',
-                }}
-                errors={errors['callEnd']?.message}
+                errors={errors['staId']?.message}
                 register={register}
                 required
               />
@@ -117,99 +123,20 @@ export const CallsForm = memo((props: IProps) => {
           <div className="flex flex-col justify-start gap-[22px]">
             <div className="w-full">
               <AppInput
-                label="Thời gian"
+                label="Kiểu dữ liệu"
                 labelClassName="!text-[24px] !text-gray-500 !font-light !capitalize"
-                name="callDate"
+                name="datatype"
                 className="!h-[55px] w-full !px-0 items-center !rounded-none !border-black"
                 containerClassName="w-full"
                 onChange={() => {}}
                 inputStyle={{
                   padding: '0 8px',
                 }}
-                errors={errors['callDate']?.message}
+                errors={errors['datatype']?.message}
                 register={register}
                 required
               />
             </div>
-            <div className="w-full">
-              <AppInput
-                label="Ghi âm"
-                labelClassName="!text-[24px] !text-gray-500 !font-light !capitalize"
-                name="callRecord"
-                className="!h-[55px] w-full !px-0 items-center !rounded-none !border-black"
-                containerClassName="w-full"
-                onChange={() => {}}
-                inputStyle={{
-                  padding: '0 8px',
-                }}
-                errors={errors['callRecord']?.message}
-                register={register}
-                required
-              />
-            </div>
-            <div className="w-full">
-              <Controller
-                name="statusId"
-                control={control}
-                render={({ field: { onChange }, ...fields }) => (
-                  <AppInput
-                    label="Trạng thái"
-                    labelClassName="!text-[24px] !text-gray-500 !font-light !capitalize"
-                    name="statusId"
-                    className="!h-[55px] w-full !px-0 items-center !rounded-none !border-black"
-                    containerClassName="w-full"
-                    onChange={(value: any) => {
-                      if (value && value !== '') {
-                        onChange(value);
-                        return;
-                      }
-                      onChange(null);
-                    }}
-                    inputStyle={{
-                      padding: '0 8px',
-                    }}
-                    errors={errors['statusId']?.message}
-                    register={register}
-                    required
-                    {...fields}
-                  />
-                )}
-              />
-            </div>
-            {/* <div className="w-full">
-              <AppText className="!text-[24px] !text-gray-500 !font-light">
-                Người gọi
-              </AppText>
-              <AppInput
-                name="userId"
-                className="!h-[55px] w-full !px-0 items-center !rounded-none !border-black"
-                containerClassName="w-full"
-                onChange={() => {}}
-                inputStyle={{
-                  padding: '0 8px',
-                }}
-                errors={errors['userId']?.message}
-                register={register}
-                required
-              />
-            </div> */}
-            {/* <div className="w-full">
-              <AppText className="!text-[24px] !text-gray-500 !font-light">
-                Mô tả
-              </AppText>
-              <AppInput
-                name="autId"
-                className="!h-[55px] w-full !px-0 items-center !rounded-none !border-black"
-                containerClassName="w-full"
-                onChange={() => {}}
-                inputStyle={{
-                  padding: '0 8px',
-                }}
-                errors={errors['autId']?.message}
-                register={register}
-                required
-              />
-            </div> */}
           </div>
         </div>
 

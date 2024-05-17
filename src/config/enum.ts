@@ -26,3 +26,8 @@ export enum EDataType {
   HOT = 'Nóng',
   COLD = 'Lạnh',
 }
+
+export enum ERoute {
+  CALLS = 'calls',
+  CUSTOMERS = 'customers',
+}

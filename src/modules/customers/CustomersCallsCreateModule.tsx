@@ -1,12 +1,13 @@
-import { CallsApi } from '@api';
+import { CallsApi, CustomerApi } from '@api';
 import { AppModal } from '@components';
 import { yupResolver } from '@hookform/resolvers/yup';
 import { useHeaderButton } from '@hooks';
 import { ICreateCallRequest } from '@interfaces/calls.type';
-import { CallsForm } from '@pages';
+import { ICreateCustomerRequest, ICustomer } from '@interfaces/customer.type';
+import { CustomersForm } from '@pages/app/customers/CustomersForm';
 import { setLoading, useAppDispatch } from '@redux';
 import { showAppToast } from '@utils';
-import { FormCallSchema } from '@validations';
+import { FormCustomerSchema } from '@validations';
 import { useEffect } from 'react';
 import { useForm } from 'react-hook-form';
 import { useNavigate } from 'react-router-dom';
@@ -14,10 +15,14 @@ import { useNavigate } from 'react-router-dom';
 type TProps = {
   onSuccess: () => void;
   onClose: () => void;
-  callData?: ICreateCallRequest;
+  customerData?: ICustomer;
 };
 
-const CallsCreateEditModule = ({ onSuccess, callData, onClose }: TProps) => {
+const CustomersCreateEditModule = ({
+  onSuccess,
+  customerData,
+  onClose,
+}: TProps) => {
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
   const { setType, type } = useHeaderButton();
@@ -25,36 +30,39 @@ const CallsCreateEditModule = ({ onSuccess, callData, onClose }: TProps) => {
   const form = useForm({
     mode: 'onChange',
     defaultValues: {
+      callId: '',
+      cusId: '',
+      staId: '',
+      cusName: '',
+      datatype: '',
       phoneNumber: '',
-      callDuration: '',
-      callEnd: '',
-      callStart: '',
-      callDate: '',
-      callDescription: '',
-      callRecord: '',
-      statusId: 0,
     },
-    resolver: yupResolver(FormCallSchema),
+    resolver: yupResolver(FormCustomerSchema),
   });
 
-  const { handleSubmit, reset } = form;
+  const {
+    handleSubmit,
+    reset,
+    formState: { errors },
+  } = form;
 
   const handleSubmitForm = handleSubmit(async value => {
-    if (callData && callData.callId) {
+    const body = {
+      staId: value.staId,
+      ...(!customerData && { cusId: value.cusId }),
+      callId: value.callId,
+      cusName: value.cusName,
+      datatype: value.datatype,
+      phoneNumber: value.phoneNumber,
+    };
+
+    if (customerData && customerData.callId) {
       try {
         dispatch(setLoading(true));
-        const body: ICreateCallRequest = {
-          phoneNumber: value.phoneNumber,
-          duration: value.callDuration,
-          end: value.callEnd,
-          start: value.callStart,
-          callDate: value.callDate,
-          description: value.callDescription,
-          record: value.callRecord,
-          staId: value.statusId,
-        };
-
-        const res: any = await CallsApi.editCallById(callData.callId, body);
+        const res: any = await CustomerApi.editCustomerById(
+          customerData.cusId,
+          body,
+        );
         if (res) {
           showAppToast('Update success', 'success');
           setType(undefined);
@@ -69,18 +77,7 @@ const CallsCreateEditModule = ({ onSuccess, callData, onClose }: TProps) => {
     } else {
       try {
         dispatch(setLoading(true));
-        const body: ICreateCallRequest = {
-          phoneNumber: value.phoneNumber,
-          duration: value.callDuration,
-          end: value.callEnd,
-          start: value.callStart,
-          callDate: value.callDate,
-          description: value.callDescription,
-          record: value.callRecord,
-          staId: value.statusId,
-        };
-
-        const res: any = await CallsApi.createCall(body);
+        const res: any = await CustomerApi.createCustomer(body);
         if (res) {
           showAppToast('Create success', 'success');
           setType(undefined);
@@ -97,30 +94,27 @@ const CallsCreateEditModule = ({ onSuccess, callData, onClose }: TProps) => {
 
   useEffect(() => {
     reset({
-      phoneNumber: callData?.phoneNumber,
-      callDuration: callData?.duration,
-      callEnd: callData?.end,
-      callStart: callData?.start,
-      callDate: callData?.callDate,
-      callDescription: callData?.description,
-      callRecord: callData?.record,
-      statusId: callData?.staId,
+      callId: customerData?.callId,
+      staId: customerData?.staId,
+      cusName: customerData?.cusName,
+      datatype: customerData?.datatype,
+      phoneNumber: customerData?.phoneNumber,
     });
-  }, [callData]);
+  }, [customerData]);
 
   return (
     <AppModal
       containerClassname="w-max bg-white py-4"
       onClose={() => {
         reset();
-        onClose;
+        onClose();
         setType(undefined);
       }}
       open={type === 'create' || type === 'edit'}
-      title={type === 'create' ? 'Tạo cuộc gọi mới' : 'Sửa cuộc gọi'}
+      title={type === 'create' ? 'Tạo khách hàng mới' : 'Sửa khách hàng'}
       haveCloseIcon
     >
-      <CallsForm
+      <CustomersForm
         form={form}
         type={type}
         onSubmitForm={handleSubmitForm}
@@ -129,4 +123,4 @@ const CallsCreateEditModule = ({ onSuccess, callData, onClose }: TProps) => {
   );
 };
 
-export default CallsCreateEditModule;
+export default CustomersCreateEditModule;

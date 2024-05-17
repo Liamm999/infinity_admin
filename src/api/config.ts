@@ -12,6 +12,7 @@ export const API_URL = {
     DATA: '/calls',
     SEARCH: '/searchCall',
     FILTER_CALL: '/filter-calls',
+    EXPORT: '/calls/export/excel',
   },
 
   CUSTOMER: {

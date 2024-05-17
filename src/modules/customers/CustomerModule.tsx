@@ -2,8 +2,9 @@ import { CustomerApi } from '@api';
 import { IMAGES } from '@assets';
 import { DataTypeContainer } from '@components';
 import { CommonTable } from '@components/common/table/CommonTable';
-import { useHeaderSearch } from '@hooks';
+import { useHeaderButton, useHeaderSearch } from '@hooks';
 import { ICustomer } from '@interfaces/customer.type';
+import CustomersCreateEditModule from '@modules/customers/CustomersCallsCreateModule';
 import { showAppToast } from '@utils';
 import { getCallStatus } from '@utils/getCallStatus';
 import { getDataTypeColor } from '@utils/getDataTypeColor';
@@ -16,6 +17,8 @@ const CustomerModule = () => {
   const [customerData, setCustomerData] = useState<ICustomer[]>([]);
   const { searchContent } = useHeaderSearch();
   const [searchParams] = useSearchParams();
+  const [currentCustomer, setCurrentCustomer] = useState<ICustomer>();
+  const { setType } = useHeaderButton();
 
   const searchContentByPhoneNumber = async (search: string) => {
     try {
@@ -47,6 +50,17 @@ const CustomerModule = () => {
       );
       if (res) {
         setCustomerData(res);
+      }
+    } catch (error) {
+      showAppToast(error);
+    }
+  };
+
+  const handleDeleteCustomer = async (cusId: number | string) => {
+    try {
+      const res: any = await CustomerApi.deleteCustomerById(cusId);
+      if (res) {
+        getCusData();
       }
     } catch (error) {
       showAppToast(error);
@@ -126,25 +140,32 @@ const CustomerModule = () => {
     {
       dataIndex: 'action',
       key: 'action',
-      render: (_: any, record: any) => (
-        <Space size="small">
-          <img
-            src={IMAGES.IconEdit}
-            alt="edit"
-            className="!h-[40px] cursor-pointer"
-          />
-          <img
+      render: (_: any, record: any) => {
+        return (
+          <Space size="small">
+            <img
+              src={IMAGES.IconEdit}
+              alt="edit"
+              className="!h-[40px] cursor-pointer"
+              onClick={() => {
+                setCurrentCustomer(record);
+                setType('edit');
+              }}
+            />
+            {/* <img
             src={IMAGES.IconCoppy}
             alt="edit"
             className="!h-[40px] cursor-pointer"
-          />
-          <img
-            src={IMAGES.IconUnseen}
-            alt="edit"
-            className="!h-[40px] cursor-pointer"
-          />
-        </Space>
-      ),
+          /> */}
+            <img
+              src={IMAGES.IconUnseen}
+              alt="edit"
+              className="!h-[40px] cursor-pointer"
+              onClick={() => handleDeleteCustomer(record.cusId)}
+            />
+          </Space>
+        );
+      },
     },
   ];
   return (
@@ -157,6 +178,14 @@ const CustomerModule = () => {
         totalPages={customerData.length}
         totalNumberOfElement={0}
         onPageChange={() => {}}
+      />
+      <CustomersCreateEditModule
+        onSuccess={() => {
+          setCurrentCustomer(undefined);
+          getCusData();
+        }}
+        onClose={() => setCurrentCustomer(undefined)}
+        customerData={currentCustomer}
       />
     </div>
   );

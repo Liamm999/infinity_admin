@@ -168,7 +168,11 @@ const CallsModule = () => {
         />
       </div>
       <CallsCreateEditModule
-        onSuccess={getCallData}
+        onSuccess={() => {
+          setCurrentCall(undefined);
+          getCallData();
+        }}
+        onClose={() => setCurrentCall(undefined)}
         callData={currentCall}
       />
     </>

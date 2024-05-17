@@ -3,7 +3,7 @@ export interface ICall {
   callDate: string;
   callId: number;
   description: string;
-  duration: string | number;
+  duration: string;
   end: string;
   phoneNumber: string;
   record: string;
