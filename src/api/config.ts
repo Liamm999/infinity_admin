@@ -19,5 +19,6 @@ export const API_URL = {
     DATA: '/customer-data',
     SEARCH: '/searchCall',
     FILTER_CUSTOMER: '/filter-customer-data',
+    EXPORT: '/customer-data/download-excel',
   },
 };

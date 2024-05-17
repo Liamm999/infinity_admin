@@ -30,4 +30,9 @@ export const CustomerApi = {
     const url = `${API_URL.CUSTOMER.DATA}/${id}`;
     return ApiClient.delete(url);
   },
+
+  exportCustomers: () => {
+    const url = `${API_URL.CUSTOMER.EXPORT}`;
+    return ApiClient.get(url);
+  },
 };

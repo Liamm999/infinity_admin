@@ -54,6 +54,10 @@ export const ForgotPasswordSchema = yup.object().shape({
     .matches(emailValidationRegex, 'emailInValid'),
 });
 
+export const OTPSchema = yup.object().shape({
+  otp: yup.string().trim().required('emailRequired'),
+});
+
 export const ResetPasswordSchema = yup.object().shape({
   password: yup
     .string()
@@ -68,14 +72,14 @@ export const ResetPasswordSchema = yup.object().shape({
     .oneOf([yup.ref('password')], 'confirmPasswordNotMatch'),
 });
 
-export const OTPSchema = yup.object().shape({
-  otp: yup
-    .string()
-    .trim()
-    .required('otpRequired')
-    .min(6, 'otpLengthInvalid')
-    .max(6, 'otpLengthInvalid'),
-});
+// export const OTPSchema = yup.object().shape({
+//   otp: yup
+//     .string()
+//     .trim()
+//     .required('otpRequired')
+//     .min(6, 'otpLengthInvalid')
+//     .max(6, 'otpLengthInvalid'),
+// });
 
 // export const ChangePasswordSchema = yup.object().shape({
 //   oldPassword: yup.string().trim().required('Old password is required'),
