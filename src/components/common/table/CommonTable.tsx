@@ -105,7 +105,7 @@ const StyledWrapTable = styled.div`
       color: black;
       background: none;
       width: fit-content;
-      max-width: 70px;
+      max-width: 120px;
       text-align: center;
     }
   }

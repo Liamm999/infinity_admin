@@ -21,4 +21,15 @@ export const API_URL = {
     FILTER_CUSTOMER: '/filter-customer-data',
     EXPORT: '/customer-data/download-excel',
   },
+
+  USER_INFOR: {
+    DATA: '/user-infor',
+    UPDATE_STATUS: '/user-infor/:userId/status',
+    UPDATE_AUTHORITY: '/user-infor/:userId/authority',
+  },
+
+  WAIT: {
+    DATA: '/wait',
+    ACCEPT_WAIT: '/wait/accept',
+  },
 };

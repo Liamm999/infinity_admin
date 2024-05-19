@@ -3,11 +3,17 @@ import styled from 'styled-components';
 import { AppInput, AppText } from '@components';
 import { APP_COLORS } from '@themes';
 import { useLocation } from 'react-router-dom';
-import { PATH_CALLS, PATH_CUSTOMERS } from '@routes';
-import { APP_HEADER_HEIGHT } from '@config';
+import { PATH_CALLS, PATH_CUSTOMERS, PATH_USER_INFOR } from '@routes';
+import { APP_HEADER_HEIGHT, SIDEBAR_WIDTH } from '@config';
 import { ChangeEvent, useMemo, useState } from 'react';
 import { IMAGES } from '@assets';
 import { useExport, useHeaderButton, useHeaderSearch } from '@hooks';
+
+const headerTitle = {
+  [PATH_CALLS]: 'Quản lý cuộc gọi',
+  [PATH_CUSTOMERS]: 'Quản lý khách hàng',
+  [PATH_USER_INFOR]: 'Quản lý nhân sự',
+} as const;
 
 export const Header = () => {
   const location = useLocation();
@@ -17,11 +23,7 @@ export const Header = () => {
   const { onExport } = useExport();
 
   const getPathName = () => {
-    if (location.pathname === PATH_CALLS) {
-      return 'Quản lý cuộc gọi';
-    } else if (location.pathname === PATH_CUSTOMERS) {
-      return 'Quản lý khách hàng';
-    }
+    return headerTitle[location.pathname as keyof typeof headerTitle];
   };
 
   return (
@@ -30,7 +32,7 @@ export const Header = () => {
         <AppText
           $fontSize={22}
           $fontWeight={400}
-          className="!text-[#a3a19a]"
+          className="!text-[#F3AA1DDE] !font-bold"
         >
           {getPathName()}
         </AppText>
@@ -64,35 +66,39 @@ export const Header = () => {
         )}
       </div>
 
-      <div className="flex items-center justify-between border border-black !h-[56px] !w-[320px] !px-0 !rounded-[14px]">
-        <AppInput
-          placeholder="Tìm kiếm"
-          name="search"
-          className="!border-none"
-          containerClassName="!border-none"
-          onChange={(e: ChangeEvent<HTMLInputElement>) =>
-            setSearch(e.target.value)
-          }
-          inputStyle={{
-            padding: '0 16px',
-            border: 'none',
-            borderRadius: '0',
-          }}
-        />
-        <img
-          src={IMAGES.searchImage}
-          alt="search"
-          className="!h-[42px] border-s border-black pl-3 cursor-pointer"
-          onClick={() => setSearchContent(search)}
-        />
-      </div>
+      {(location.pathname === PATH_CALLS ||
+        location.pathname === PATH_CUSTOMERS) && (
+        <div className="flex items-center justify-between border border-black !h-[56px] !w-[320px] !px-0 !rounded-[14px]">
+          <AppInput
+            placeholder="Tìm kiếm"
+            name="search"
+            className="!border-none"
+            containerClassName="!border-none"
+            onChange={(e: ChangeEvent<HTMLInputElement>) =>
+              setSearch(e.target.value)
+            }
+            inputStyle={{
+              padding: '0 16px',
+              border: 'none',
+              borderRadius: '0',
+            }}
+          />
+          <img
+            src={IMAGES.searchImage}
+            alt="search"
+            className="!h-[42px] border-s border-black pl-3 cursor-pointer"
+            onClick={() => setSearchContent(search)}
+          />
+        </div>
+      )}
     </HeaderWrapper>
   );
 };
 const HeaderWrapper = styled.div`
   position: fixed;
   width: 100%;
-  padding-left: 18%;
+  padding-left: ${SIDEBAR_WIDTH};
+  margin-left: 21px;
   z-index: 10;
   display: flex;
   align-items: center;

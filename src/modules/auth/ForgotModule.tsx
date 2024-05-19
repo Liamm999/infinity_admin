@@ -7,10 +7,11 @@ import { useAppDispatch } from '@/redux/hooks';
 import { useNavigate } from 'react-router-dom';
 import { ForgotPasswordSchema, OTPSchema } from '@validations';
 import { showAppToast } from '@utils';
-import { ForgotForm, OTPForm } from '@pages';
+import { ForgotForm } from '@pages';
 import { setLoading } from '@redux';
 import { authAPI } from '@api';
 import { useState } from 'react';
+import { OTPConfirmForm } from '@pages/auth/forgot/ConfirmEmailForm';
 
 export const ForgotModule = () => {
   const dispatch = useAppDispatch();
@@ -76,7 +77,7 @@ export const ForgotModule = () => {
       )}
 
       {step === 2 && (
-        <OTPForm
+        <OTPConfirmForm
           form={otpForm}
           onSubmitForm={handleOtpSubmit}
           onRedirectToRegister={handleRedirectToRegister}

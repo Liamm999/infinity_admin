@@ -49,13 +49,13 @@ export const ForgotPasswordSchema = yup.object().shape({
   email: yup
     .string()
     .trim()
-    .required('emailRequired')
+    .required('Trường này là bắt buộc')
     .email('emailInValid')
     .matches(emailValidationRegex, 'emailInValid'),
 });
 
 export const OTPSchema = yup.object().shape({
-  otp: yup.string().trim().required('emailRequired'),
+  otp: yup.string().trim().required('Trường này là bắt buộc'),
 });
 
 export const ResetPasswordSchema = yup.object().shape({

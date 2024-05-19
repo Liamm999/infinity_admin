@@ -96,6 +96,11 @@ const CallsModule = () => {
       key: 'callId',
     },
     {
+      title: 'Số điện thoại',
+      dataIndex: 'phoneNumber',
+      key: 'phoneNumber',
+    },
+    {
       title: 'Trạng thái cuộc gọi',
       dataIndex: 'description',
       key: 'description',

@@ -4,7 +4,7 @@ import { DataTypeContainer } from '@components';
 import { CommonTable } from '@components/common/table/CommonTable';
 import { useHeaderButton, useHeaderSearch } from '@hooks';
 import { ICustomer } from '@interfaces/customer.type';
-import CustomersCreateEditModule from '@modules/customers/CustomersCallsCreateModule';
+import CustomersCreateEditModule from '@modules/customers/CustomersCreateModule';
 import { showAppToast } from '@utils';
 import { getCallStatus } from '@utils/getCallStatus';
 import { getDataTypeColor } from '@utils/getDataTypeColor';

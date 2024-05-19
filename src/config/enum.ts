@@ -1,3 +1,5 @@
+import { PATH_CALLS } from '@routes';
+
 export enum appLanguageEnum {
   CHINESE = 'cn',
   ENGLISH = 'en',
@@ -30,4 +32,16 @@ export enum EDataType {
 export enum ERoute {
   CALLS = 'calls',
   CUSTOMERS = 'customers',
+}
+
+export enum EUserStatus {
+  ACTIVE = 'Hoạt động',
+  STOP = 'Dừng',
+  BREAK = 'Tạm nghỉ',
+}
+
+export enum EUserAuthority {
+  ADMIN = 'admin',
+  LEAD = 'Lead',
+  EMPLOYEE = 'Employee',
 }

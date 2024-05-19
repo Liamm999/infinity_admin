@@ -14,7 +14,7 @@ interface IProps {
   onRedirectToRegister: () => void;
 }
 
-export const OTPForm = memo((props: IProps) => {
+export const OTPConfirmForm = memo((props: IProps) => {
   const { form, onSubmitForm } = props;
   // const navigate = useNavigate();
 

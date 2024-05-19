@@ -9,6 +9,7 @@ import {
   RegisterPage,
   CallsPage,
   CustomersPage,
+  UserInfoPage,
 } from '@pages';
 import {
   PATH_404,
@@ -20,6 +21,7 @@ import {
   PATH_REGISTER,
   PATH_CALLS,
   PATH_CUSTOMERS,
+  PATH_USER_INFOR,
 } from './navigation';
 import { AppLayout, ErrorLayout, AuthLayout } from '@layouts';
 
@@ -27,6 +29,7 @@ export const routes: IRoute[] = [
   { path: PATH_HOME, page: HomePage, layout: AppLayout },
   { path: PATH_CALLS, page: CallsPage, layout: AppLayout },
   { path: PATH_CUSTOMERS, page: CustomersPage, layout: AppLayout },
+  { path: PATH_USER_INFOR, page: UserInfoPage, layout: AppLayout },
 
   // 404
   { path: PATH_404, page: NotFoundPage, layout: ErrorLayout },

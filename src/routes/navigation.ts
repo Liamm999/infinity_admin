@@ -10,3 +10,4 @@ export const PATH_CHOOSE_ROLE = `${PATH_LOGIN}/role`;
 
 export const PATH_CALLS = '/calls';
 export const PATH_CUSTOMERS = '/customers';
+export const PATH_USER_INFOR = '/user-infor';

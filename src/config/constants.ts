@@ -6,7 +6,7 @@ export const DATE_TIME_FORMAT = 'h:mm A, DD/MM/YYYY';
 export const PREV_HOUR_FORMAT = 'HH-mm-ss';
 export const HOUR_FORMAT = 'hh:mm A';
 
-export const SIDEBAR_WIDTH = '264px';
+export const SIDEBAR_WIDTH = '316px';
 export const SIDEBAR_COLLAPSED_WIDTH = '105px';
 export const SIDEBAR_ICON_SIZE = '24px';
 export const APP_HEADER_HEIGHT = '168px';
