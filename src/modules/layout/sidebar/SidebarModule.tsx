@@ -4,7 +4,12 @@ import { APP_COLORS } from '@themes';
 import styled from 'styled-components';
 import { Link, useLocation, useSearchParams } from 'react-router-dom';
 import { logout, selectAuth, useAppDispatch, useAppSelector } from '@redux';
-import { PATH_CALLS, PATH_CUSTOMERS, PATH_USER_INFOR } from '@routes';
+import {
+  PATH_CALLS,
+  PATH_CUSTOMERS,
+  PATH_USER_INFOR,
+  PATH_WAIT,
+} from '@routes';
 import { Checkbox } from 'antd';
 
 interface OptionProps {
@@ -104,6 +109,26 @@ export const SidebarModule = () => {
                 $color={APP_COLORS.primaryGolden}
               >
                 Quản lý nhân sự
+              </AppTextBodyMedium>
+            </Option>
+          </Link>
+          <Link to={PATH_WAIT}>
+            <Option
+              className="flex gap-4 items-center"
+              $active={location.pathname === PATH_WAIT}
+            >
+              <img
+                src={IMAGES.IconRegisterVerify}
+                alt="search"
+                className="!h-[18px]"
+              />
+              <AppTextBodyMedium
+                className={`!text-[22px] ${
+                  location.pathname === PATH_WAIT && 'active'
+                }`}
+                $color={APP_COLORS.primaryGolden}
+              >
+                Phê duyệt đăng ký
               </AppTextBodyMedium>
             </Option>
           </Link>

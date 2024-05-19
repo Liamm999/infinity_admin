@@ -23,7 +23,7 @@ const CallsModule = () => {
         setCallsData(res);
       }
     } catch (error) {
-      showAppToast(error);
+      showAppToast(error, 'error');
     }
   };
 
@@ -34,7 +34,7 @@ const CallsModule = () => {
         getCallData();
       }
     } catch (error) {
-      showAppToast(error);
+      showAppToast(error, 'error');
     }
   };
 
@@ -45,7 +45,7 @@ const CallsModule = () => {
         setCallsData(res);
       }
     } catch (error) {
-      showAppToast(error);
+      showAppToast(error, 'error');
     }
   }
 
@@ -59,7 +59,7 @@ const CallsModule = () => {
         setCallsData(res);
       }
     } catch (error) {
-      showAppToast(error);
+      showAppToast(error, 'error');
     }
   };
 
@@ -150,7 +150,7 @@ const CallsModule = () => {
           <button>
             <img
               onClick={() => handleDeleteCall(record.callId)}
-              src={IMAGES.IconUnseen}
+              src={IMAGES.IconDelete}
               alt="edit"
               className="!h-[40px] cursor-pointer"
             />

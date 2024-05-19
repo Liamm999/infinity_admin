@@ -33,7 +33,7 @@ export function useExport() {
         window.URL.revokeObjectURL(url);
       }
     } catch (error) {
-      showAppToast(error);
+      showAppToast(error, 'error');
     }
   };
 

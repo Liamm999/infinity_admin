@@ -22,14 +22,17 @@ import {
   PATH_CALLS,
   PATH_CUSTOMERS,
   PATH_USER_INFOR,
+  PATH_WAIT,
 } from './navigation';
 import { AppLayout, ErrorLayout, AuthLayout } from '@layouts';
+import { WaitPage } from '@pages/app/wait';
 
 export const routes: IRoute[] = [
   { path: PATH_HOME, page: HomePage, layout: AppLayout },
   { path: PATH_CALLS, page: CallsPage, layout: AppLayout },
   { path: PATH_CUSTOMERS, page: CustomersPage, layout: AppLayout },
   { path: PATH_USER_INFOR, page: UserInfoPage, layout: AppLayout },
+  { path: PATH_WAIT, page: WaitPage, layout: AppLayout },
 
   // 404
   { path: PATH_404, page: NotFoundPage, layout: ErrorLayout },

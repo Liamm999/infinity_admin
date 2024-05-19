@@ -3,7 +3,7 @@ import styled from 'styled-components';
 import { AppInput, AppText } from '@components';
 import { APP_COLORS } from '@themes';
 import { useLocation } from 'react-router-dom';
-import { PATH_CALLS, PATH_CUSTOMERS, PATH_USER_INFOR } from '@routes';
+import { PATH_CALLS, PATH_CUSTOMERS, PATH_USER_INFOR, PATH_WAIT } from '@routes';
 import { APP_HEADER_HEIGHT, SIDEBAR_WIDTH } from '@config';
 import { ChangeEvent, useMemo, useState } from 'react';
 import { IMAGES } from '@assets';
@@ -13,6 +13,7 @@ const headerTitle = {
   [PATH_CALLS]: 'Quản lý cuộc gọi',
   [PATH_CUSTOMERS]: 'Quản lý khách hàng',
   [PATH_USER_INFOR]: 'Quản lý nhân sự',
+  [PATH_WAIT]: 'Phê duyệt đăng ký'
 } as const;
 
 export const Header = () => {

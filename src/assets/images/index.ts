@@ -19,6 +19,8 @@ import IconUnseen from './unseen.png';
 import IconCreate from './create.png';
 import IconSave from './save.png';
 import IconExport from './export.png';
+import IconDelete from './IconDelete.png';
+import IconCheck from './IconCheck.png';
 
 export const IMAGES = {
   errorImage,
@@ -42,4 +44,6 @@ export const IMAGES = {
   IconCreate,
   IconSave,
   IconExport,
+  IconDelete,
+  IconCheck,
 };

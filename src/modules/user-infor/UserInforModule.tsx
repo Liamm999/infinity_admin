@@ -61,7 +61,7 @@ const UserInforModule = () => {
         setUserInfor(res);
       }
     } catch (error) {
-      showAppToast(error);
+      showAppToast(error, 'error');
     }
   }
 
@@ -72,7 +72,7 @@ const UserInforModule = () => {
         getUserInfor();
       }
     } catch (error) {
-      showAppToast(error);
+      showAppToast(error, 'error');
     }
   };
 
@@ -86,7 +86,7 @@ const UserInforModule = () => {
         getUserInfor();
       }
     } catch (error) {
-      showAppToast(error);
+      showAppToast(error, 'error');
     }
   };
 
@@ -97,7 +97,7 @@ const UserInforModule = () => {
         getUserInfor();
       }
     } catch (error) {
-      showAppToast(error);
+      showAppToast(error, 'error');
     }
   };
 
@@ -199,7 +199,7 @@ const UserInforModule = () => {
               }}
             />
             <img
-              src={IMAGES.IconUnseen}
+              src={IMAGES.IconDelete}
               alt="edit"
               className="!h-[40px] cursor-pointer"
               onClick={() => handleDeleteUserInfor(record.userId)}

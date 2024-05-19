@@ -27,7 +27,7 @@ const CustomerModule = () => {
         setCustomerData(res);
       }
     } catch (error) {
-      showAppToast(error);
+      showAppToast(error, 'error');
     }
   };
 
@@ -38,7 +38,7 @@ const CustomerModule = () => {
         setCustomerData(res);
       }
     } catch (error) {
-      showAppToast(error);
+      showAppToast(error, 'error');
     }
   }
 
@@ -52,7 +52,7 @@ const CustomerModule = () => {
         setCustomerData(res);
       }
     } catch (error) {
-      showAppToast(error);
+      showAppToast(error, 'error');
     }
   };
 
@@ -63,7 +63,7 @@ const CustomerModule = () => {
         getCusData();
       }
     } catch (error) {
-      showAppToast(error);
+      showAppToast(error, 'error');
     }
   };
 
@@ -158,7 +158,7 @@ const CustomerModule = () => {
             className="!h-[40px] cursor-pointer"
           /> */}
             <img
-              src={IMAGES.IconUnseen}
+              src={IMAGES.IconDelete}
               alt="edit"
               className="!h-[40px] cursor-pointer"
               onClick={() => handleDeleteCustomer(record.cusId)}
