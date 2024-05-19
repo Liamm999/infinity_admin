@@ -119,7 +119,7 @@ export const StyledTheme = {
     lightPink: '#FFF2F5',
     closeAuction: '#FD2254',
     secondaryGreenDark: '#29B59A',
-    blueDarker: '#0E3359'
+    blueDarker: '#0E3359',
   },
   boxShadow: {
     shadowSm:
@@ -127,9 +127,10 @@ export const StyledTheme = {
     shadowMd:
       '0px 2px 4px -2px rgba(16, 24, 40, 0.06), 0px 4px 8px -2px rgba(16, 24, 40, 0.10)',
     shadowLg:
-      '0px 4px 6px -2px rgba(16, 24, 40, 0.03), 0px 12px 16px -4px rgba(16, 24, 40, 0.08)'
+      '0px 4px 6px -2px rgba(16, 24, 40, 0.03), 0px 12px 16px -4px rgba(16, 24, 40, 0.08)',
   },
   fonts: {
-    HammersmithOne: 'Hammersmith One, sans-serif'
-  }
+    HammersmithOne: 'Hammersmith One, sans-serif',
+    Poppins: 'Poppins, sans-serif',
+  },
 };

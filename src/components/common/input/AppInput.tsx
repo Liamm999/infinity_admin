@@ -88,6 +88,7 @@ interface IInputProps {
   disableCopyPaste?: boolean;
   onlyNumber?: boolean | { allowDecimal: boolean };
   onlyWord?: boolean;
+  labelClassName?: string;
 }
 export const AppInput = forwardRef(
   (props: IInputProps, ref?: React.Ref<HTMLInputElement>) => {
@@ -133,6 +134,7 @@ export const AppInput = forwardRef(
       disableCopyPaste,
       onlyNumber,
       onlyWord,
+      labelClassName,
     } = props;
 
     const { t } = useTranslation();
@@ -215,7 +217,7 @@ export const AppInput = forwardRef(
       >
         {label && (
           <label
-            className="input__label"
+            className={`input__label ${labelClassName}`}
             htmlFor={name || label}
           >
             {t(label)}
@@ -309,7 +311,7 @@ export const StyledAppInput = styled.div<{
     display: inline-block;
     margin-bottom: 10px;
     color: ${p => p.theme.colors.neutral800};
-    font-family: 'Hammersmith One', sans-serif;
+    font-family: 'Poppins', sans-serif;
     font-size: 1.4rem;
     font-style: normal;
     font-weight: 500;
@@ -455,7 +457,7 @@ export const StyledAppInput = styled.div<{
             `
           : css`
               color: ${APP_COLORS.fontLight};
-              font-family: 'Hammersmith One', sans-serif;
+              font-family: 'Poppins', sans-serif;
               font-size: 1.6rem;
               font-style: normal;
               font-weight: 400;
@@ -477,7 +479,7 @@ export const StyledAppInput = styled.div<{
             `
           : css`
               color: ${APP_COLORS.fontLight};
-              font-family: 'Hammersmith One', sans-serif;
+              font-family: 'Poppins', sans-serif;
               font-size: 1.6rem;
               font-style: normal;
               font-weight: 400;

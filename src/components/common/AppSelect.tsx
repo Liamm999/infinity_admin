@@ -11,12 +11,14 @@ interface IOption {
   onChange?: (value: string) => void;
   value?: any;
   label?: string;
-  required?: string;
+  required?: boolean;
   placeholder?: string;
   name?: string;
   error?: string;
   disable?: boolean;
   className?: string;
+  selectClassName?: string;
+  optionClassName?: string;
 }
 
 export const AppSelect = (props: IOption) => {
@@ -30,7 +32,9 @@ export const AppSelect = (props: IOption) => {
     placeholder,
     error,
     disable,
-    className
+    className,
+    selectClassName,
+    optionClassName,
   } = props;
 
   const filterOption = (input: string, option?: OptionProps) =>
@@ -51,6 +55,7 @@ export const AppSelect = (props: IOption) => {
         </label>
       )}
       <Select
+        className={selectClassName}
         showSearch
         optionFilterProp="children"
         onChange={onChange}
@@ -62,6 +67,7 @@ export const AppSelect = (props: IOption) => {
         {options?.length ? (
           options.map(option => (
             <Option
+              className={optionClassName}
               key={option.value?.toString()}
               value={option.value}
             >
@@ -108,7 +114,7 @@ const StyledWrapSelect = styled.div`
     display: inline-block;
     margin-bottom: 10px;
     color: ${p => p.theme.colors.neutral800};
-    font-family: 'Hammersmith One', sans-serif;
+    font-family: 'Poppins', sans-serif;
     font-size: 1.4rem;
     font-style: normal;
     font-weight: 500;

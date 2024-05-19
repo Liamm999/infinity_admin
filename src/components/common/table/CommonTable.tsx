@@ -90,13 +90,23 @@ export const CommonTable = (props: IProps) => {
 
 const StyledWrapTable = styled.div`
   .ant-table-thead {
+    border-radius: 0;
     background-color: ${APP_COLORS.midGray};
+
+    .ant-table-cell::before {
+      display: none;
+    }
+
     > tr > th {
+      border-radius: 0 !important;
       border: none;
-      font-weight: 600;
-      font-size: 12px;
+      font-weight: 700;
+      font-size: 16px;
       color: black;
       background: none;
+      width: fit-content;
+      max-width: 120px;
+      text-align: center;
     }
   }
   .ant-table-tbody {
@@ -104,6 +114,7 @@ const StyledWrapTable = styled.div`
       font-weight: 500;
       font-size: 14px;
       color: #3d4042;
+      text-align: center;
     }
     > tr:nth-child(2n) {
       background-color: ${APP_COLORS.pink};
@@ -121,7 +132,6 @@ const StyledWrapTable = styled.div`
     }
   }
   .ant-table-pagination {
-    border-radius: 8px;
     background-color: #fff;
     margin-top: 20px;
     padding: 12px 0;

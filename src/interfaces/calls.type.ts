@@ -1,9 +1,9 @@
 export interface ICall {
   auId: number;
-  callDate: string | null;
+  callDate: string;
   callId: number;
   description: string;
-  duration: string | number;
+  duration: string;
   end: string;
   phoneNumber: string;
   record: string;
@@ -12,3 +12,5 @@ export interface ICall {
   stt: number;
   userId: number;
 }
+
+export type ICreateCallRequest = Partial<ICall>;

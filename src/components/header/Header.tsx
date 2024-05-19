@@ -1,85 +1,105 @@
-import { Dropdown, Menu } from 'antd';
-import { CaretDownOutlined } from '@ant-design/icons';
+import { Space } from 'antd';
 import styled from 'styled-components';
-import {
-  AppInput,
-  AppText,
-  AppTextBodyMedium,
-  ModalConfirm,
-  UKFlagIcon,
-  VNFlagIcon,
-} from '@components';
+import { AppInput, AppText } from '@components';
 import { APP_COLORS } from '@themes';
-import { authAPI } from '@api';
-import { useLocation, useNavigate } from 'react-router-dom';
-import { PATH_CALLS, PATH_CUSTOMERS, PATH_LOGIN } from '@routes';
-import { APP_HEADER_HEIGHT, AUTH_USER } from '@config';
-import { removeFormLS } from '@utils';
-import {
-  logout,
-  selectApp,
-  selectAuth,
-  setAppLanguage,
-  useAppDispatch,
-  useAppSelector,
-} from '@redux';
-import { ChangeEvent, useState } from 'react';
-import { useTranslation } from 'react-i18next';
+import { useLocation } from 'react-router-dom';
+import { PATH_CALLS, PATH_CUSTOMERS, PATH_USER_INFOR, PATH_WAIT } from '@routes';
+import { APP_HEADER_HEIGHT, SIDEBAR_WIDTH } from '@config';
+import { ChangeEvent, useMemo, useState } from 'react';
 import { IMAGES } from '@assets';
-import { useHeaderSearch } from '@hooks';
+import { useExport, useHeaderButton, useHeaderSearch } from '@hooks';
+
+const headerTitle = {
+  [PATH_CALLS]: 'Quản lý cuộc gọi',
+  [PATH_CUSTOMERS]: 'Quản lý khách hàng',
+  [PATH_USER_INFOR]: 'Quản lý nhân sự',
+  [PATH_WAIT]: 'Phê duyệt đăng ký'
+} as const;
 
 export const Header = () => {
   const location = useLocation();
   const [search, setSearch] = useState('');
   const { setSearchContent } = useHeaderSearch();
+  const { setType } = useHeaderButton();
+  const { onExport } = useExport();
 
   const getPathName = () => {
-    if (location.pathname === PATH_CALLS) {
-      return 'Quản lý cuộc gọi';
-    } else if (location.pathname === PATH_CUSTOMERS) {
-      return 'Quản lý khách hàng';
-    }
+    return headerTitle[location.pathname as keyof typeof headerTitle];
   };
 
   return (
     <HeaderWrapper>
-      <AppText
-        $fontSize={22}
-        $fontWeight={400}
-        className="!text-[#a3a19a]"
-      >
-        {getPathName()}
-      </AppText>
+      <div>
+        <AppText
+          $fontSize={22}
+          $fontWeight={400}
+          className="!text-[#F3AA1DDE] !font-bold"
+        >
+          {getPathName()}
+        </AppText>
+        {(location.pathname === PATH_CALLS ||
+          location.pathname === PATH_CUSTOMERS) && (
+          <Space className="gap-5 mt-7">
+            <button onClick={() => setType('create')}>
+              <img
+                src={IMAGES.IconCreate}
+                alt="create"
+                className="!h-[40px] cursor-pointer"
+              />
+            </button>
 
-      <div className="flex items-center justify-between border border-black !h-[56px] !w-[320px] !px-0 !rounded-[14px]">
-        <AppInput
-          placeholder="Tìm kiếm"
-          name="search"
-          className="!border-none"
-          containerClassName="!border-none"
-          onChange={(e: ChangeEvent<HTMLInputElement>) =>
-            setSearch(e.target.value)
-          }
-          inputStyle={{
-            padding: '0 16px',
-            border: 'none',
-            borderRadius: '0',
-          }}
-        />
-        <img
-          src={IMAGES.searchImage}
-          alt="search"
-          className="!h-[42px] border-s border-black pl-3 cursor-pointer"
-          onClick={() => setSearchContent(search)}
-        />
+            <button onClick={() => setType('save')}>
+              <img
+                src={IMAGES.IconSave}
+                alt="save"
+                className="!h-[40px] cursor-pointer"
+              />
+            </button>
+
+            <button onClick={() => onExport()}>
+              <img
+                src={IMAGES.IconExport}
+                alt="export"
+                className="!h-[40px] cursor-pointer"
+              />
+            </button>
+          </Space>
+        )}
       </div>
+
+      {(location.pathname === PATH_CALLS ||
+        location.pathname === PATH_CUSTOMERS) && (
+        <div className="flex items-center justify-between border border-black !h-[56px] !w-[320px] !px-0 !rounded-[14px]">
+          <AppInput
+            placeholder="Tìm kiếm"
+            name="search"
+            className="!border-none"
+            containerClassName="!border-none"
+            onChange={(e: ChangeEvent<HTMLInputElement>) =>
+              setSearch(e.target.value)
+            }
+            inputStyle={{
+              padding: '0 16px',
+              border: 'none',
+              borderRadius: '0',
+            }}
+          />
+          <img
+            src={IMAGES.searchImage}
+            alt="search"
+            className="!h-[42px] border-s border-black pl-3 cursor-pointer"
+            onClick={() => setSearchContent(search)}
+          />
+        </div>
+      )}
     </HeaderWrapper>
   );
 };
 const HeaderWrapper = styled.div`
   position: fixed;
   width: 100%;
-  padding-left: 18%;
+  padding-left: ${SIDEBAR_WIDTH};
+  margin-left: 21px;
   z-index: 10;
   display: flex;
   align-items: center;

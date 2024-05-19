@@ -8,7 +8,7 @@ import {
   AppH3,
   AppInput,
   AppText,
-  AppTextBodyRegular
+  AppTextBodyRegular,
 } from '@components';
 import { BREAK_POINT } from '@config';
 import { APP_COLORS } from '@themes';
@@ -16,10 +16,10 @@ import { APP_COLORS } from '@themes';
 interface IProps {
   form: UseFormReturn<any, any, any>;
   onSubmitForm: (
-    e?: BaseSyntheticEvent<any, any, any> | undefined
+    e?: BaseSyntheticEvent<any, any, any> | undefined,
   ) => Promise<void>;
   onRedirectToRegister: () => void;
-  onResendOTP: () => void;
+  onResendOTP?: () => void;
 }
 
 export const OTPForm = memo((props: IProps) => {
@@ -27,7 +27,7 @@ export const OTPForm = memo((props: IProps) => {
 
   const {
     register,
-    formState: { errors }
+    formState: { errors },
   } = form;
 
   const { t } = useTranslation();
@@ -53,7 +53,7 @@ export const OTPForm = memo((props: IProps) => {
           captionLabel={t('otp')}
           required
         />
-        <div className="sub-actions">
+        {/* <div className="sub-actions">
           <AppText
             $fontSize={14}
             $fontWeight={400}
@@ -71,7 +71,7 @@ export const OTPForm = memo((props: IProps) => {
           >
             {t('resendOTP')}
           </AppText>
-        </div>
+        </div> */}
         <div className="actions">
           <AppButton
             typeHtml="submit"

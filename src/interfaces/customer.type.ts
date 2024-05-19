@@ -7,3 +7,5 @@ export interface ICustomer {
   datatype: string;
   phoneNumber: string;
 }
+
+export type ICreateCustomerRequest = Partial<ICustomer>;

@@ -59,7 +59,7 @@ const AppDatePicker = (props: IProps) => {
           showTime && {
             showHour: true,
             showMinute: true,
-            format: 'HH:mm'
+            format: 'HH:mm',
           }
         }
         onBlur={props.onBlur}
@@ -88,7 +88,7 @@ const StyledWrapDate = styled.div`
     display: block;
     margin-bottom: 10px;
     color: ${p => p.theme.colors.neutral800};
-    font-family: 'Hammersmith One', sans-serif;
+    font-family: 'Poppins', sans-serif;
     font-size: 1.4rem;
     font-style: normal;
     font-weight: 500;

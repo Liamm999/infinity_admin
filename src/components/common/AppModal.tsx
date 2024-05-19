@@ -7,6 +7,7 @@ import cn from 'classnames';
 // import { APP_COLOR } from '@themes';
 import { useLockBodyScroll } from '@hooks';
 import { useTranslation } from 'react-i18next';
+import { AppText } from '@components/styled';
 
 const BACKDROP_Z_INDEX = 101;
 const MODAL_Z_INDEX = 102;
@@ -27,7 +28,7 @@ export const AppModal: React.FC<IProps> = props => {
 
   return createPortal(
     <AnimatePresence>{open && <Modal {...props} />}</AnimatePresence>,
-    document.body
+    document.body,
   );
 };
 
@@ -39,7 +40,7 @@ const Modal: React.FC<Omit<IProps, 'open'>> = props => {
     lockScroll = true,
     title,
     haveCloseIcon,
-    containerClassname
+    containerClassname,
   } = props;
   const { t } = useTranslation();
 
@@ -57,10 +58,12 @@ const Modal: React.FC<Omit<IProps, 'open'>> = props => {
       <div className={cn('app-modal-inner-container', containerClassname)}>
         {(title || haveCloseIcon) && (
           <div className="app-modal-header">
-            <p className="app-modal-title">{title && t(title)}</p>
+            <AppText className="!text-[24px] !text-gray-500 !font-light">
+              {title ?? ''}
+            </AppText>
             <button
               onClick={onClose}
-              className="app-modal-close-btn"
+              className="app-modal-close-btn !text-[24px]"
             >
               {haveCloseIcon && 'X'}
             </button>

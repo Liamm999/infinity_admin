@@ -18,14 +18,17 @@ export const authAPI = {
       email: body.email,
     });
   },
+
   forgotPassword: (email?: any) => {
-    const url = `${API_URL.AUTH.FORGOT}?email=${email}`;
-    return ApiClient.get(url);
+    const url = `${API_URL.AUTH.FORGOT}`;
+    return ApiClient.post(url, { email: email });
   },
+
   otpValid: (code?: any) => {
     const url = `${API_URL.AUTH.OTP_VALID}?code=${code}`;
     return ApiClient.get(url);
   },
+
   changePassword: (body?: any) => {
     const url = API_URL.AUTH.CHANGE_PASSWORD;
     const auth = store.getState()?.auth;
@@ -34,6 +37,7 @@ export const authAPI = {
     };
     return ApiClient.put(url, body, { headers });
   },
+
   logout: (body?: any) => {
     const url = API_URL.AUTH.LOGOUT;
     return ApiClient.post(url, body);

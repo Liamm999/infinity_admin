@@ -6,7 +6,7 @@ export const DATE_TIME_FORMAT = 'h:mm A, DD/MM/YYYY';
 export const PREV_HOUR_FORMAT = 'HH-mm-ss';
 export const HOUR_FORMAT = 'hh:mm A';
 
-export const SIDEBAR_WIDTH = '264px';
+export const SIDEBAR_WIDTH = '316px';
 export const SIDEBAR_COLLAPSED_WIDTH = '105px';
 export const SIDEBAR_ICON_SIZE = '24px';
 export const APP_HEADER_HEIGHT = '168px';
@@ -43,3 +43,5 @@ export const numberRegex = /^\d+$/;
 export const creditCardSpaceRegex =
   /^((4\d{3})|(5[1-5]\d{2})|(6011)|(34\d{1})|(37\d{1}))-?\s?\d{4}-?\s?\d{4}-?\s?\d{4}|3[4,7][\d\s-]{15}$/;
 export const onlyTextRegex = /^[A-Za-z]+$/;
+export const phoneRegExp =
+  /^((\\+[1-9]{1,4}[ \\-]*)|(\\([0-9]{2,3}\\)[ \\-]*)|([0-9]{2,4})[ \\-]*)*?[0-9]{3,4}?[ \\-]*[0-9]{3,4}?$/;
