@@ -2,7 +2,8 @@ export const API_URL = {
   AUTH: {
     FORGOT: '/forgot-password',
     CHANGE_PASSWORD: '/update-password',
-    OTP_VALID: '/valid-code',
+    OTP_VALID: '/verify-code',
+    RESET_PASSWORD: '/reset-password',
     REGISTER: '/register',
     LOGIN: '/login',
     LOGOUT: '/logout',

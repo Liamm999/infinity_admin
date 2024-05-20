@@ -50,26 +50,29 @@ export const ForgotPasswordSchema = yup.object().shape({
     .string()
     .trim()
     .required('Trường này là bắt buộc')
-    .email('emailInValid')
-    .matches(emailValidationRegex, 'emailInValid'),
+    .email('Email không hợp lệ')
+    .matches(emailValidationRegex, 'Email không hợp lệ'),
 });
 
 export const OTPSchema = yup.object().shape({
   otp: yup.string().trim().required('Trường này là bắt buộc'),
+  email: yup
+    .string()
+    .trim()
+    .required('Trường này là bắt buộc')
+    .email('Email không hợp lệ')
+    .matches(emailValidationRegex, 'Email không hợp lệ'),
 });
 
 export const ResetPasswordSchema = yup.object().shape({
-  password: yup
+  email: yup
     .string()
     .trim()
-    .required('passwordRequired')
-    .min(8, 'passwordLengthInvalid')
-    .max(32, 'passwordLengthInvalid'),
-  // .matches(strongPasswordValidationRegex, 'passwordFormatInvalid'),
-  confirmPassword: yup
-    .string()
-    .required('confirmPasswordIsRequired')
-    .oneOf([yup.ref('password')], 'confirmPasswordNotMatch'),
+    .required('Trường này là bắt buộc')
+    .email('Email không hợp lệ')
+    .matches(emailValidationRegex, 'Email không hợp lệ'),
+  otp: yup.string().trim().required('Trường này là bắt buộc'),
+  newPassword: yup.string().trim().required('Trường này là bắt buộc'),
 });
 
 // export const OTPSchema = yup.object().shape({

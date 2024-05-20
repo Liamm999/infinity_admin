@@ -12,11 +12,11 @@ interface IProps {
   onSubmitForm: (
     e?: BaseSyntheticEvent<any, any, any> | undefined,
   ) => Promise<void>;
-  onRedirectToRegister: () => void;
+  onCancle: () => void;
 }
 
 export const ResetPasswordForm = memo((props: IProps) => {
-  const { form, onSubmitForm } = props;
+  const { form, onSubmitForm, onCancle } = props;
   // const navigate = useNavigate();
 
   const {
@@ -41,17 +41,34 @@ export const ResetPasswordForm = memo((props: IProps) => {
       >
         <div className="w-full">
           <AppText className="!text-[32px] !text-gray-500 !font-light">
-            Mật khẩu mới
+            Email
           </AppText>
           <AppInput
-            name="password"
+            name="email"
             className="!h-[55px] w-full !px-0 items-center !rounded-none !border-black"
             containerClassName="w-full"
             onChange={() => {}}
             inputStyle={{
               padding: '0 8px',
             }}
-            errors={errors['password']?.message}
+            errors={errors['email']?.message}
+            register={register}
+            required
+          />
+        </div>
+        <div className="w-full">
+          <AppText className="!text-[32px] !text-gray-500 !font-light">
+            Mã xác thực
+          </AppText>
+          <AppInput
+            name="otp"
+            className="!h-[55px] w-full !px-0 items-center !rounded-none !border-black"
+            containerClassName="w-full"
+            onChange={() => {}}
+            inputStyle={{
+              padding: '0 8px',
+            }}
+            errors={errors['otp']?.message}
             register={register}
             required
           />
@@ -61,14 +78,14 @@ export const ResetPasswordForm = memo((props: IProps) => {
             Nhập lại mật khẩu mới
           </AppText>
           <AppInput
-            name="confirmPassword"
+            name="newPassword"
             className="!h-[55px] w-full !px-0 items-center !rounded-none !border-black"
             containerClassName="w-full"
             onChange={() => {}}
             inputStyle={{
               padding: '0 8px',
             }}
-            errors={errors['confirmPassword']?.message}
+            errors={errors['newPassword"']?.message}
             register={register}
             required
           />
@@ -76,9 +93,11 @@ export const ResetPasswordForm = memo((props: IProps) => {
         <div className="flex items-center gap-[60px]">
           <div className="w-full flex justify-center mt-[30px]">
             <AppButton
-              className={`max-w-[277px] !h-[64px] !rounded-[30px]`}
+              typeHtml="button"
+              className={`max-w-[277px] !h-[80px] !rounded-[30px]`}
               textClassName="!text-black !font-light !text-[36px]"
               backgroundColor={APP_COLORS.primaryGolden}
+              onClick={onCancle}
               text={'Hủy bỏ'}
             />
           </div>
